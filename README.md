@@ -1,46 +1,89 @@
-# CNCF Hugo Starter
+# Docsy Example
 
-This repository contains a boilerplate static site generator setup for creating CNCF documentation projects. We strongly recommend using this setup (it helps us help you and your project!), but none of the technologies in the stack are strictly required.
+[Docsy](https://github.com/google/docsy) is a Hugo theme for technical documentation sites, providing easy site navigation, structure, and more. This **Docsy Example Project** uses the Docsy theme, as well as providing a skeleton documentation structure for you to use. You can either copy this project and edit it with your own content, or use the theme in your projects like any other [Hugo theme](https://gohugo.io/themes/installing-and-using-themes/).
 
-The starter uses the following:
-* **[Hugo (extended, v0.73 or above)](https://gohugo.io/)** as a static site generator
-* **[Bootstrap 4.5.x](https://getbootstrap.com/docs/4.5/getting-started/introduction/)** as a CSS framework
-* **[Netlify](https://www.netlify.com/)** for building, hosting, and DNS management
+The theme is included in this project as a Git submodule:
 
-## Running locally
-
-Make sure you have [npm](https://www.npmjs.com/) and [yarn](https://yarnpkg.com/) installed. Clone this repository and run the following two commands in its directory:
-
-```shell
-# Install npm assets (just Bulma for Sass/CSS)
-yarn
-
-# Run the server locally
-make serve
+```bash
+▶ git submodule
+ a053131a4ebf6a59e4e8834a42368e248d98c01d themes/docsy (heads/master)
 ```
 
-## Running on Netlify
+This Docsy Example Project is hosted at [https://example.docsy.dev/](https://example.docsy.dev/).
 
-Netlify is a CI/CD build tool and hosting solution for (among other things) static sites. We **strongly** recommend using Netlify unless you have a good reason not to.
+You can find detailed theme instructions in the Docsy user guide: https://docsy.dev/docs/
 
-This repository comes with a pre-configured [`netlify.toml`](https://github.com/cncf/hugo-netlify-starter/blob/master/netlify.toml) file. To build to Netlify:
+This is not an officially supported Google product. This project is currently maintained.
 
-1. Go to [netlify.com](https://netlify.com) and sign up. We recommend signing up using a GitHub account.
-2. Click **New Site from Git**, and give Netlify access to your GitHub account.
-  > **Note:** For projects with lots of contributors, it can be handy to create a general/bot account instead of granting access with a personal account.
+## Using the Docsy Example Project as a template
 
-3. Install Netlify with access to your documentation site repository.
-4. Leave all other settings as default and click **Deploy Site**.
+A simple way to get started is to use this project as a template, which gives you a site project that is set up and ready to use. To do this: 
 
-# What's included
+1. Click **Use this template**.
 
-This repository has two layouts with minimal styling, all stored under `/layouts/_default`:
+2. Select a name for your new project and click **Create repository from template**.
 
-* A **homepage** template, a basic homepage which uses the following:
-  * The `index.html` file and partials in the `/partials/home` directory
-  * Some helpers in the `/assets/sass/helpers.sass` file
-* A **docs** template, a basic content page with submenu which uses the following:
-  * The `single.html` file and partials in the `/partials/docs` directory
-  * Classes in the `/assets/sass/helpers.sass` and `/assets/sass/_docs.sass` files
+3. Make your own local working copy of your new repo using git clone, replacing https://github.com/my/example.git with your repo’s web URL:
 
-Both use default components and styling from the Bootstrap CSS framework. No menus are structured, because menu structure is highly dependent on the nature of the project.
+```bash
+git clone --recurse-submodules --depth 1 https://github.com/my/example.git
+```
+
+You can now edit your local versions of the site’s source files.
+
+If you want to do SCSS edits and want to publish these, you need to install `PostCSS`
+
+```bash
+npm install
+```
+
+## Running the website locally
+
+Once you've cloned or copied the site repo, from the repo root folder, run:
+
+```
+hugo server
+```
+
+## Running a container locally
+
+You can run docsy-example inside a [Docker](ihttps://docs.docker.com/)
+container, the container runs with a volume bound to the `docsy-example`
+folder. This approach doesn't require you to install any dependencies other
+than Docker.
+
+1. Build the docker image 
+
+```bash
+docker build -f dev.Dockerfile -t docsy-example-dev:latest .
+```
+
+1. Run the built image
+
+```bash
+docker run --publish 1313:1313 --detach --mount src="$(pwd)",target=/home/docsy/app,type=bind docsy-example-dev:latest
+```
+
+Open your web browser and type `http://localhost:1313` in your navigation bar,
+This opens a local instance of the docsy-example homepage. You can now make
+changes to the docsy example and those changes will immediately show up in your
+browser after you save.
+
+To stop the container, first identify the container ID with:
+
+```bash
+docker container ls
+```
+
+Take note of the hexadecimal string below the `CONTAINER ID` column, then stop
+the container:
+
+```bash
+docker stop [container_id]
+```
+
+To delete the container run:
+
+```
+docker container rm [container_id]
+```

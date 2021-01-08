@@ -1,13 +1,24 @@
 {
-  "dependencies": {
-    "3": "^2.1.0",
-    "-": "^0.0.1",
-    "@fortawesome/fontawesome-free": "^5.14.0",
-    "bootstrap": "^4.5.2",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+  "name": "tech-doc-hugo",
+  "version": "0.0.1",
+  "description": "Hugo theme for technical documentation.",
+  "main": "none.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/google/docsy-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/google/docsy-example/issues"
+  },
+  "homepage": "https://github.com/google/docsy-example#readme",
+  "dependencies": {},
   "devDependencies": {
-    "hugo-extended": "^0.76.5"
+    "autoprefixer": "^9.8.6",
+    "postcss-cli": "^7.1.2"
   }
 }
