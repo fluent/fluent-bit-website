@@ -5,5 +5,5 @@ COPY package.json /home/docsy/deps/
 COPY package-lock.json /home/docsy/deps/
 RUN cd /home/docsy/deps/ && npm install -g
 # COPY . .
-CMD [ "server --buildDrafts --buildFuture -- disableFastRender --ignoreCache" ]
+CMD [ "server" ]
 
