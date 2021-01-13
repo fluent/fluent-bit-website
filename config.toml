@@ -58,7 +58,7 @@ anchor = "smart"
 
 [[menu.main]]
     name = "GitHub"
-    weight = 20
+    weight = 40
     url = "https://github.com/fluent/fluent-bit/"
 
 # Language configuration
