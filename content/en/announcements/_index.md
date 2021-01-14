@@ -1,0 +1,802 @@
+---
+title: Fluent Bit - Articles
+linkTitle: Release Notes
+menu:
+  main:
+    weight: 30
+---
+
+{{% blocks/lead color="dark" %}}
+{{% /blocks/lead %}}
+
+# Release Notes
+
+<!--1.6 Series -->
+### Fluent Bit v1.6 Series
+
+[Fluent Bit v1.5](https://github.com/fluent/fluent-bit/tree/1.3) is the new **stable branch** for production usage. Based on bug reports or specific minor feature requests, we do quick releases upon demand. Below is a list of the notes for each version.
+
+<div class="panel panel-default margin-bottom-40">
+  <table class="table table-striped invoice-table">
+    <thead>
+      <tr>
+	<th>Version</th>
+	<th>Release Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><a href="/announcements/v1.6.10/">v1.6.10</a></td>
+	<td>Jan 08, 2021</td>
+        <td><span class="badge badge-u">new</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.6.9/">v1.6.9</a></td>
+	<td>Dec 17, 2020</td>
+        <td><span class="badge badge-u">new</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.6.8/">v1.6.8</a></td>
+	<td>Dec 03, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.6.6/">v1.6.6</a></td>
+	<td>Nov 24, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.6.5/">v1.6.5</a></td>
+	<td>Nov 20, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.6.4/">v1.6.4</a></td>
+	<td>Nov 10, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.6.3/">v1.6.3</a></td>
+	<td>Oct 30, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.6.2/">v1.6.2</a></td>
+	<td>Oct 23, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.6.1/">v1.6.1</a></td>
+	<td>Oct 16, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.6.0/">v1.6.0</a></td>
+	<td>Oct 09, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--End 1.6 Series -->
+
+<!--1.5 Series -->
+### Fluent Bit v1.5 Series
+
+[Fluent Bit v1.5](https://github.com/fluent/fluent-bit/tree/1.3) is the new **stable branch** for production usage. Based on bug reports or specific minor feature requests, we do quick releases upon demand. Below is a list of the notes for each version.
+
+<div class="panel panel-default margin-bottom-40">
+  <table class="table table-striped invoice-table">
+    <thead>
+      <tr>
+	<th>Version</th>
+	<th>Release Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><a href="/announcements/v1.5.7/">v1.5.7</a></td>
+	<td>Sep 24, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.5.6/">v1.5.6</a></td>
+	<td>Sep 11, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.5.5/">v1.5.5</a></td>
+	<td>Sep 07, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.5.4/">v1.5.4</a></td>
+	<td>Aug 22, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.5.3/">v1.5.3</a></td>
+	<td>Aug 10, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.5.2/">v1.5.2</a></td>
+	<td>Jul 24, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.5.1/">v1.5.1</a></td>
+	<td>Jul 17, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.5.0/">v1.5.0</a></td>
+	<td>Jul 13, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--End 1.5 Series -->
+
+<!--1.4 Series -->
+### Fluent Bit v1.4 Series
+
+[Fluent Bit v1.4](https://github.com/fluent/fluent-bit/tree/1.3) is the new **stable branch** for production usage. Based on bug reports or specific minor feature requests, we do quick releases upon demand. Below is a list of the notes for each version.
+
+<div class="panel panel-default margin-bottom-40">
+  <table class="table table-striped invoice-table">
+    <thead>
+      <tr>
+	<th>Version</th>
+	<th>Release Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><a href="/announcements/v1.4.6/">v1.4.6</a></td>
+	<td>Jun 10, 2020</td>
+        <td><span class="badge badge-u">new</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.4.5/">v1.4.5</a></td>
+	<td>May 25, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.4.4/">v1.4.4</a></td>
+	<td>May 11, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.4.3/">v1.4.3</a></td>
+	<td>May 01, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.4.2/">v1.4.2</a></td>
+	<td>Apr 01, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.4.1/">v1.4.1</a></td>
+	<td>Mar 26, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.4.0/">v1.4.0</a></td>
+	<td>Mar 25, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--End 1.4 Series -->
+
+<!--1.3 Series -->
+### Fluent Bit v1.3 Series
+
+[Fluent Bit v1.3](https://github.com/fluent/fluent-bit/tree/1.3) series. Based on bug reports or specific minor feature requests, we do quick releases upon demand. Below is a list of the notes for each version.
+
+<div class="panel panel-default margin-bottom-40">
+  <table class="table table-striped invoice-table">
+    <thead>
+      <tr>
+	<th>Version</th>
+	<th>Release Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><a href="/announcements/v1.3.11/">v1.3.11</a></td>
+	<td>Mar 19, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.3.10/">v1.3.10</a></td>
+	<td>Mar 04, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.3.9/">v1.3.9</a></td>
+	<td>Feb 25, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.3.8/">v1.3.8</a></td>
+	<td>Feb 19, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.3.7/">v1.3.7</a></td>
+	<td>Feb 07, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.3.6/">v1.3.6</a></td>
+	<td>Jan 15, 2020</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.3.5/">v1.3.5</a></td>
+	<td>Dec 18, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.3.4/">v1.3.4</a></td>
+	<td>Dec 13, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.3.3/">v1.3.3</a></td>
+	<td>Nov 19, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.3.2/">v1.3.2</a></td>
+	<td>Oct 10, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.3.1/">v1.3.1</a></td>
+	<td>Oct 04, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.3.0/">v1.3.0</a></td>
+	<td>Sep 30, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--End 1.3 Series -->
+
+<!--1.2 Series -->
+### Fluent Bit v1.2 Series
+
+Old [Fluent Bit v1.2](https://github.com/fluent/fluent-bit/tree/1.2) series. Based on bug reports or specific minor feature requests, we do quick releases upon demand. Below is a list of the notes for each version.
+
+<div class="panel panel-default margin-bottom-40">
+  <table class="table table-striped invoice-table">
+    <thead>
+      <tr>
+	<th>Version</th>
+	<th>Release Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><a href="/announcements/v1.2.2/">v1.2.2</a></td>
+	<td>Jul 19, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.2.1/">v1.2.1</a></td>
+	<td>Jul 09, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.2.0/">v1.2.0</a></td>
+	<td>Jun 27, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--End 1.2 Series -->
+
+<!--1.1 Series -->
+### Fluent Bit v1.1 Series
+
+Old [Fluent Bit v1.1](https://github.com/fluent/fluent-bit/tree/1.1) series. Based on bug reports or specific minor feature requests, we do quick releases upon demand. Below is a list of the notes for each version.
+
+<div class="panel panel-default margin-bottom-40">
+  <table class="table table-striped invoice-table">
+    <thead>
+      <tr>
+	<th>Version</th>
+	<th>Release Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><a href="/announcements/v1.1.3/">v1.1.3</a></td>
+	<td>Jun 13, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.1.2/">v1.1.2</a></td>
+	<td>May 31, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.1.1/">v1.1.1</a></td>
+	<td>May 20, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.1.0/">v1.1.0</a></td>
+	<td>May 09, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--End 1.1 Series -->
+
+<!--1.0 Series -->
+### Fluent Bit v1.0 Series
+
+Old [Fluent Bit v1.0](https://github.com/fluent/fluent-bit/tree/1.0) series. Based on bug reports or specific minor feature requests, we do quick releases upon demand. Below is a list of the notes for each version.
+
+<div class="panel panel-default margin-bottom-40">
+  <table class="table table-striped invoice-table">
+    <thead>
+      <tr>
+	<th>Version</th>
+	<th>Release Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><a href="/announcements/v1.0.6/">v1.0.6</a></td>
+	<td>March 27, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.0.5/">v1.0.5</a></td>
+	<td>March 20, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.0.4/">v1.0.4</a></td>
+	<td>February 01, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.0.3/">v1.0.3</a></td>
+	<td>January 22, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.0.2/">v1.0.2</a></td>
+	<td>January 11, 2019</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.0.1/">v1.0.1</a></td>
+	<td>December 20, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v1.0.0/">v1.0.0</a></td>
+	<td>December 13, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--End 1.0 Series -->
+
+<!--0.14 Series -->
+### Fluent Bit v0.14 Series
+
+Old Fluent Bit v0.14 series. Based on bug reports or specific minor feature requests, we do quick releases upon demand. Below is a list of the notes for each version.
+
+<div class="panel panel-default margin-bottom-40">
+  <table class="table table-striped invoice-table">
+    <thead>
+      <tr>
+	<th>Version</th>
+	<th>Release Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><a href="/announcements/v0.14.9/">v0.14.9</a></td>
+	<td>December 07, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.14.8/">v0.14.8</a></td>
+	<td>November 23, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.14.7/">v0.14.7</a></td>
+	<td>November 09, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.14.6/">v0.14.6</a></td>
+	<td>October 31, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.14.5/">v0.14.5</a></td>
+	<td>October 28, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.14.4/">v0.14.4</a></td>
+	<td>September 30, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.14.3/">v0.14.3</a></td>
+	<td>September 24, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.14.2/">v0.14.2</a></td>
+	<td>September 14, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.14.1/">v0.14.1</a></td>
+	<td>August 30, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.14.0/">v0.14.0</a></td>
+	<td>August 29, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--End 0.14 Series -->
+
+<!--0.13 Series -->
+### Fluent Bit v0.13 Series
+
+Old Fluent Bit v0.13 series. Based on bug reports or specific minor feature requests, we do quick releases upon demand. Below is a list of the notes for each version.
+
+<div class="panel panel-default margin-bottom-40">
+  <table class="table table-striped invoice-table">
+    <thead>
+      <tr>
+	<th>Version</th>
+	<th>Release Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><a href="/announcements/v0.13.8/">v0.13.8</a></td>
+	<td>August 18, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.13.7/">v0.13.7</a></td>
+	<td>August 07, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.13.6/">v0.13.6</a></td>
+	<td>July 31, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.13.5/">v0.13.5</a></td>
+	<td>July 24, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.13.4/">v0.13.4</a></td>
+	<td>June 15, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.13.3/">v0.13.3</a></td>
+	<td>June 08, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.13.2/">v0.13.2</a></td>
+	<td>May 21, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.13.1/">v0.13.1</a></td>
+	<td>May 09, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.13.0/">v0.13.0</a></td>
+	<td>April 30, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--End 0.13 Series -->
+
+<!--0.12 Series -->
+### Fluent Bit v0.12 Series
+
+Old Fluent Bit v0.12 series. Based on bug reports or specific minor feature requests, we do quick releases upon demand. Below is a list of the notes for each version.
+
+<div class="panel panel-default margin-bottom-40">
+  <table class="table table-striped invoice-table">
+    <thead>
+      <tr>
+	<th>Version</th>
+	<th>Release Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><a href="/announcements/v0.12.19/">v0.12.19</a></td>
+	<td>April 22, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.18/">v0.12.18</a></td>
+	<td>April 22, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.17/">v0.12.17</a></td>
+	<td>April 06, 2018</td>
+        <td><span class="badge badge-light">light</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.16/">v0.12.16</a></td>
+	<td>March 28, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.15/">v0.12.15</a></td>
+	<td>March 05, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.14/">v0.12.14</a></td>
+	<td>February 14, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.13/">v0.12.13</a></td>
+	<td>February 08, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.12/">v0.12.12</a></td>
+	<td>January 25, 2018</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.11/">v0.12.11</a></td>
+	<td>December 20, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.10/">v0.12.10</a></td>
+	<td>December 04, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.9/">v0.12.9</a></td>
+	<td>November 24, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.8/">v0.12.8</a></td>
+	<td>November 07, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.7/">v0.12.7</a></td>
+	<td>November 02, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.6/">v0.12.6</a></td>
+	<td>October 13, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.5/">v0.12.5</a></td>
+	<td>October 05, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.4/">v0.12.4</a></td>
+	<td>September 29, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.3/">v0.12.3</a></td>
+	<td>September 23, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.2/">v0.12.2</a></td>
+	<td>September 15, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.1/">v0.12.1</a></td>
+	<td>September 01, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.12.0/">v0.12.0</a></td>
+	<td>August 17, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--End 0.12 Series -->
+
+<!--0.11 Series -->
+### Fluent Bit v0.11 Series
+
+The old Fluent Bit v0.11 Series. Based on bug reports or specific minor feature requests, we do quick releases upon demand. Below is a list of the notes for each version.
+
+<div class="panel panel-default margin-bottom-40">
+  <table class="table table-striped invoice-table">
+    <thead>
+      <tr>
+	<th>Version</th>
+	<th>Release Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><a href="/announcements/v0.11.17/">v0.11.17</a></td>
+	<td>August 15, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.16/">v0.11.16</a></td>
+	<td>August 07, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.15/">v0.11.15</a></td>
+	<td>July 23, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.14/">v0.11.14</a></td>
+	<td>July 18, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.13/">v0.11.13</a></td>
+	<td>July 10, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.12/">v0.11.12</a></td>
+	<td>July 03, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.11/">v0.11.11</a></td>
+	<td>June 27, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.10/">v0.11.10</a></td>
+	<td>June 23, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.9/">v0.11.9</a></td>
+	<td>June 14, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.8/">v0.11.8</a></td>
+	<td>June 03, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.7/">v0.11.7</a></td>
+	<td>May 30, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.6/">v0.11.6</a></td>
+	<td>May 22, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.5/">v0.11.5</a></td>
+	<td>May 17, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.4/">v0.11.4</a></td>
+	<td>April 26, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.3/">v0.11.3</a></td>
+	<td>April 12, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.2/">v0.11.2</a></td>
+	<td>April 05, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.1/">v0.11.1</a></td>
+	<td>April 04, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.11.0/">v0.11.0</a></td>
+	<td>March 30, 2017</td>
+        <td><span class="badge badge-light">old</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--End 0.11 Series -->
+
+<!--0.10 Series -->
+### Fluent Bit v0.10 Series
+
+The 0.10 series is not longer supported.
+
+<div class="panel panel-default margin-bottom-40">
+  <table class="table table-striped invoice-table">
+    <thead>
+      <tr>
+	<th>Version</th>
+	<th>Release Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+	<td><a href="/announcements/v0.10.1/">v0.10.1</a></td>
+	<td>January 06, 2017</td>
+        <td><span class="badge badge-light">old-deprecated</span></td>
+      </tr>
+      <tr>
+	<td><a href="/announcements/v0.10.0/">v0.10.0</a></td>
+	<td>December 30, 2016</td>
+        <td><span class="badge badge-light">old-deprecated</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--End 0.10 Series -->
