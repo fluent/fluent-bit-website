@@ -8,27 +8,38 @@
 
                 <div class="ani-text">
                     <pre id="typewriter">
-                        <span class="ln">1</span><span class="var-highlight">[INPUT]</span>
-                        <span class="ln">2</span>    Name <span class="string-highlight"> tail</span>
-                        <span class="ln">3</span>    Tag  <span class="string-highlight">tail.01</span>
-                        <span class="ln">4</span>    Path <span class="string-highlight">/var/log/system.log</span>
+<span class="yaml-key">pipeline</span>:
+  <span class="yaml-key">inputs</span>:
+    - <span class="yaml-key">name</span>: <span class="string-highlight">tail</span>
+      <span class="yaml-key">path</span>: <span class="string-highlight">/var/log/system.log</span>
+      <span class="yaml-key">tag</span>: <span class="string-highlight">app.logs</span>
 
-                        <span class="ln">5</span><span class="var-highlight">[OUTPUT]</span>                            
-                        <span class="ln">6</span>    Name <span class="string-highlight">s3</span>
-                        <span class="ln">7</span>    Match <span class="string-highlight">*</span>
-                        <span class="ln">8</span>    bucket <span class="string-highlight">your-bucket</span>
-                        <span class="ln">9</span>    region <span class="string-highlight">us-east-1</span>
-                        <span class="ln">10</span>    store_dir <span class="string-highlight">/home/ec2-user/buffer</span>
-                        <span class="ln">11</span>    total_file_size <span class="string-highlight">50M</span>
-                        <span class="ln">12</span>    upload_timeout <span class="string-highlight">10m</span>
+  <span class="yaml-key">processors</span>:
+    - <span class="yaml-key">name</span>: <span class="string-highlight">opentelemetry_envelope</span>
+    - <span class="yaml-key">name</span>: <span class="string-highlight">record_modifier</span>
+      <span class="yaml-key">record</span>:
+        <span class="yaml-key">service.name</span>: <span class="string-highlight">checkout</span>
 
-                        <span class="ln">13</span><span class="var-highlight">[OUTPUT]</span>
-                        <span class="ln">14</span>    Name <span class="string-highlight">splunk</span>
+  <span class="yaml-key">outputs</span>:
+    - <span class="yaml-key">name</span>: <span class="string-highlight">opentelemetry</span>
+      <span class="yaml-key">match</span>: <span class="string-highlight">*</span>
+      <span class="yaml-key">host</span>: <span class="string-highlight">otel-gateway.monitoring.svc</span>
+      <span class="yaml-key">port</span>: <span class="yaml-number">4318</span>
+      <span class="yaml-key">logs_uri</span>: <span class="string-highlight">/v1/logs</span>
                     </pre>
                 </div>
             </div>
             <div class="col-md-12 col-lg-5" data-aos="fade-left" data-aos-duration="2000">
-                <h4 class="text-gradient text-left mt-4">{{$data.info | safeHTML}}</h4>
+                {{ with $data.otelLabel }}
+                <p class="howit-eyebrow">{{ . | safeHTML }}</p>
+                {{ end }}
+                {{ with $data.otelHeading }}
+                <h4 class="text-gradient text-left mt-0">{{$data.otelHeading | safeHTML}}</h4>
+                {{ end }}
+                {{ with $data.subInfo }}
+                <p class="howit-subinfo">{{ . | markdownify }}</p>
+                {{ end }}
+                <h5 class="howit-support-heading">{{$data.info | safeHTML}}</h5>
                 <ul>
                     {{range $data.lists}}
                     <li>{{.}}</li>

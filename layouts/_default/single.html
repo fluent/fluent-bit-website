@@ -6,11 +6,13 @@
     {{- partial "meeting.html" . -}} 
 
        
-    <section class="section">
+    <section class="section page-content{{ if eq .RelPermalink "/opentelemetry/" }} opentelemetry-page{{ end }}">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    {{.Content}}
+            <div class="row justify-content-center">
+                <div class="col-12{{ if eq .RelPermalink "/opentelemetry/" }} col-lg-10{{ end }}">
+                    <div class="page-article">
+                        {{.Content}}
+                    </div>
                 </div>
             </div>
         </div>    

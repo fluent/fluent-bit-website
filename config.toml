@@ -54,7 +54,7 @@ noteUrl = "announcements/v5.0.0"
 
     [[menu.main]]
         identifier = "slack"
-        url = "https://launchpass.com/fluent-all"
+        url = "https://communityinviter.com/apps/cloud-native/cncf"
         name = "slack"
         weight = 8
         pre = "/images/slack.svg"
@@ -89,7 +89,7 @@ noteUrl = "announcements/v5.0.0"
         weight = 4
 
  [[params.social]]
-    url   = "https://launchpass.com/fluent-all"
+    url   = "https://communityinviter.com/apps/cloud-native/cncf"
     icon  = "/images/slack-color.svg"
     name = "slack"
  [[params.social]]

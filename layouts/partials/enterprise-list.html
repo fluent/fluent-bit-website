@@ -4,9 +4,18 @@
 {{ if $data.enabled }}
 <section class="section enterprise mt-0 py-0" style="order: {{$data.position}};">
     <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="enterprise-intro text-center">
+                    <p class="enterprise-eyebrow">Service partners</p>
+                    <h3>Organizations building with Fluent Bit</h3>
+                    <p>Find consulting, platform, and implementation partners that support Fluent Bit deployments across enterprise and cloud-native environments.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
         {{range $data.list }}
-        <div class="row mb-5">
-            <div class="col-sm-12 col-md-10 col-lg-8 offset-0 offset-md-1 offset-lg-2"> 
+            <div class="col-sm-12 col-lg-6 mb-4"> 
                 <div class="list-box">
                     <div class="box-bg">
                         <div class="row">
@@ -23,9 +32,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> 
         {{end}}
+        </div>
     </div>
 </section>
 {{end}}

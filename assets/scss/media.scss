@@ -22,6 +22,21 @@
       font-size: 16px;
     }
   }
+  .home-hero{
+    h1{
+      font-size: 72px;
+    }
+
+    .hero-action-row{
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-release-card{
+      width: 100%;
+      max-width: 520px;
+    }
+  }
   .section-heading{
     h4{
       font-size: 20px;
@@ -34,6 +49,46 @@
   .latest-ver .ver-box .info
   {
     padding: 25px 45px;
+  }
+  .top-sec.page-enterprise,
+  .top-sec.page-opentelemetry,
+  .top-sec.page-community{
+    .lg-font{
+      font-size: 58px;
+      line-height: 0.98;
+    }
+
+    h5{
+      font-size: 19px;
+      line-height: 28px;
+      max-width: 90%;
+    }
+  }
+  .old-ver{
+    .archive-intro{
+      margin-bottom: 28px;
+    }
+
+    h3{
+      font-size: 32px;
+      line-height: 36px;
+    }
+  }
+  .enterprise{
+    .enterprise-intro{
+      h3{
+        font-size: 32px;
+        line-height: 36px;
+      }
+
+      p{
+        font-size: 16px;
+        line-height: 27px;
+      }
+    }
+  }
+  .opentelemetry-page .page-article{
+    padding: 36px 34px;
   }
   .brand-list li{
     margin:5px 0px;
@@ -181,6 +236,13 @@
           font-size: 16px;
         }
       }
+
+      .community-card{
+        .community-icon{
+          width: 64px;
+          height: 64px;
+        }
+      }
     } 
 }
   
@@ -223,6 +285,25 @@
       font-size: 46px;
       line-height: 53px;
   }
+  .top-sec.page-enterprise,
+  .top-sec.page-opentelemetry,
+  .top-sec.page-community{
+    padding-top: 68px;
+    padding-bottom: 36px;
+
+    .lg-font{
+      font-size: 44px;
+      line-height: 0.98;
+      text-align: center;
+      margin-bottom: 14px !important;
+    }
+
+    h5{
+      font-size: 17px;
+      line-height: 25px;
+      text-align: center !important;
+    }
+  }
 
   .enterprise{
     .list-box{
@@ -251,6 +332,21 @@
                 min-height: initial;
             }
         }      
+
+        .community-card{
+          .box-bg{
+            gap: 14px;
+          }
+
+          .community-icon{
+            width: 58px;
+            height: 58px;
+          }
+
+          .btn-gradient{
+            width: 100%;
+          }
+        }
     }   
   } 
 
@@ -300,12 +396,87 @@
         }
       }
     }
+    .home-hero{
+      margin-top: -100px;
+      padding: 124px 0 52px;
+
+      .hero-tag{
+        margin-bottom: 14px;
+        padding: 8px 14px;
+      }
+
+      h1{
+        font-size: 48px;
+        line-height: 0.98;
+      }
+
+      .sub-heading{
+        max-width: 100%;
+        margin-bottom: 24px;
+      }
+
+      .hero-action-row{
+        gap: 14px;
+      }
+
+      .release-btn{
+        width: 100%;
+        gap: 10px;
+      }
+
+      .btn-gradient{
+        width: 100%;
+        min-width: 0;
+        height: 52px;
+      }
+
+      .hero-release-card{
+        min-width: 0;
+        max-width: none;
+        width: 100%;
+        padding: 14px 16px;
+      }
+
+      .hero-spotlight{
+        a{
+          width: 100%;
+          justify-content: flex-start;
+          border-radius: 20px;
+          padding: 14px 16px;
+        }
+      }
+
+      .hero-image{
+        margin-top: 34px;
+      }
+
+      .hero-visual-frame{
+        padding: 16px 12px 10px;
+        border-radius: 22px;
+
+        &:before{
+          inset: 8px;
+          border-radius: 18px;
+        }
+      }
+    }
     .how-it-works {      
       .btn-gradient{
         display: block;
       }
       h4{
         font-size: 24px;  
+      }
+      .howit-eyebrow{
+        font-size: 11px;
+      }
+      .howit-subinfo{
+        font-size: 16px;
+        line-height: 26px;
+      }
+      .howit-support-heading{
+        font-size: 20px;
+        line-height: 28px;
       }
 
     }
@@ -331,6 +502,15 @@
       width: 33.3%;
     }
 
+    .trust-strip{
+      padding-top: 0;
+
+      .brand-list{
+        padding: 16px 10px;
+        border-radius: 18px;
+      }
+    }
+
     #performance{
       h5{
         max-width: 100%;
@@ -340,6 +520,10 @@
     .performance-list{
       align-items: left;
       margin-bottom: 40px;
+      .performance-card{
+        padding: 22px 18px 18px;
+        border-radius: 18px;
+      }
       .icon {
         // justify-content: center;
         margin-bottom: 5px;
@@ -355,6 +539,11 @@
           text-align: center;
         }
       }
+    }
+
+    .home-performance .section-heading h4{
+      font-size: 28px;
+      line-height: 32px;
     }
   
     .testimonials{  
@@ -376,6 +565,8 @@
       .testi-info{
         font-size: 16px;
         line-height: 22px;
+        padding: 28px 20px 24px;
+        border-radius: 20px;
   
         &::after{
           bottom: -35%;
@@ -385,6 +576,10 @@
         .test-highlight{
           font-size: 16px;
           line-height: 19px;
+        }
+
+        img{
+          max-width: 220px;
         }
       }
     }
@@ -466,12 +661,12 @@
             width: 95%;
             min-height: 280px;
             margin: 20px auto 70px;
-            padding: 5px 8px 10px 20px;
+            padding: 14px 14px 14px 20px;
   
             #typewriter{
-                margin-left: -45%;
+                margin-left: 0;
                 font-size: 9px;
-                line-height: 0.8em;
+                line-height: 1.4em;
             }
 
             &::before{
@@ -583,24 +778,26 @@
         padding-top: 0px;
 
         .container{
-          padding: 0px;
+          padding: 0 15px;
           overflow-x: hidden;
         }
      
       .ver-box{
         background-size: 190% 100%;  
-        min-height: 535px;
+        min-height: auto;
         display: flex;
         align-items: flex-end;
-        border-radius: 0px;
+        border-radius: 22px;
 
         .info{
-          padding: 30px;
+          padding: 26px 22px;
           p{
             font-size: 16px;
+            line-height: 24px;
           }
           h3{
             font-size: 30px !important;
+            line-height: 34px;
           }
         }
 
@@ -631,6 +828,181 @@
         text-align: center;
       }
       
+    }
+
+    .release-notes{
+      margin-top: -42px;
+      padding-top: 0;
+      padding-bottom: 48px;
+
+      .announcement-article{
+        padding: 28px 22px;
+        border-radius: 18px;
+      }
+
+      h2{
+        font-size: 30px;
+        line-height: 36px;
+      }
+
+      h3{
+        font-size: 24px !important;
+        line-height: 30px;
+      }
+
+      h4{
+        font-size: 20px;
+        line-height: 26px;
+      }
+
+      p,
+      li{
+        font-size: 16px;
+        line-height: 27px;
+        word-break: normal;
+        overflow-wrap: anywhere;
+      }
+
+      ul,
+      ol{
+        padding-left: 22px;
+      }
+    }
+
+    .release-index{
+      margin-top: 8px;
+
+      h2{
+        font-size: 30px;
+        line-height: 34px;
+      }
+
+      .release-index-copy{
+        font-size: 16px;
+        line-height: 26px;
+      }
+
+      .announcement-article{
+        padding: 28px 20px 24px;
+      }
+    }
+
+    .old-ver{
+      padding-top: 0;
+
+      h3{
+        font-size: 26px;
+        line-height: 30px;
+      }
+
+      .archive-copy{
+        font-size: 16px;
+        line-height: 26px;
+      }
+
+      .ver-table{
+        border-radius: 18px;
+      }
+    }
+
+    .enterprise{
+      padding-bottom: 24px;
+
+      .enterprise-intro{
+        margin-bottom: 20px;
+
+        h3{
+          font-size: 26px;
+          line-height: 30px;
+        }
+
+        p{
+          font-size: 16px;
+          line-height: 26px;
+        }
+      }
+
+      .list-box{
+        border-radius: 20px;
+
+        .box-bg{
+          padding: 20px;
+        }
+
+        .logo-area{
+          min-height: 110px;
+          margin-bottom: 18px;
+          border-radius: 16px;
+          padding: 18px;
+        }
+
+        h4{
+          font-size: 24px;
+          line-height: 28px;
+          margin-bottom: 10px;
+        }
+
+        p{
+          font-size: 16px;
+          line-height: 26px;
+          margin-bottom: 18px;
+        }
+      }
+    }
+
+    .opentelemetry-page{
+      padding-top: 0;
+      padding-bottom: 42px;
+
+      .page-article{
+        padding: 26px 20px;
+        border-radius: 20px;
+      }
+
+      h2{
+        font-size: 30px;
+        line-height: 34px;
+      }
+
+      h3{
+        font-size: 24px;
+        line-height: 28px;
+      }
+
+      h4{
+        font-size: 20px;
+        line-height: 25px;
+      }
+
+      p,
+      li{
+        font-size: 16px;
+        line-height: 27px;
+      }
+
+      img{
+        border-radius: 14px;
+      }
+    }
+
+    .hero-inner.announcement-hero{
+      padding-top: 92px;
+      padding-bottom: 82px;
+
+      h1{
+        font-size: 48px;
+        line-height: 54px;
+      }
+
+      h6{
+        font-size: 18px;
+        line-height: 24px;
+      }
+
+      p{
+        font-size: 22px;
+        line-height: 28px;
+      }
     }
 
     .navbar-collapse.sm-mobile{
@@ -734,6 +1106,13 @@
         }
       }
 
+      .community-card{
+        .community-icon{
+          width: 56px;
+          height: 56px;
+        }
+      }
+
       &.meeting{
         .list-box{
             h4{
@@ -750,5 +1129,3 @@
       }
     } 
 }
-
-
