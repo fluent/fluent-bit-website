@@ -1,7 +1,7 @@
 {{ if .Params.performance.enabled }}
 {{$data := .Params.performance }}
 
-<section class="section" id="{{$data.sectionId}}" style="order: {{$data.position}};">
+<section class="section home-performance" id="{{$data.sectionId}}" style="order: {{$data.position}};">
     <div class="container">
         <div class="row mb-5">
             <div class="col-12">                                   
@@ -13,15 +13,17 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row performance-grid">
             {{range $data.lists }}  
                 <div class="col-md-6 col-sm-6 col-lg-3 performance-list"> 
-                    <div class="icon" data-aos="flip-up" data-aos-easing="linear" data-aos-duration="300">
-                        <img src="{{.icon}}" alt="{{.heading}}}">
+                    <div class="performance-card">
+                        <div class="icon" data-aos="flip-up" data-aos-easing="linear" data-aos-duration="300">
+                            <img src="{{.icon}}" alt="{{.heading}}}">
+                        </div>
+                        <div class="heading" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="300">{{.heading}}</div>
+                        <p data-aos="zoom-out-down" data-aos-easing="linear" data-aos-duration="300">{{.description}}</p>
+                        <p data-aos="zoom-out-down" data-aos-easing="linear" data-aos-duration="300" class="text-gradient hightlight">{{.heightlightText}}</p>
                     </div>
-                    <div class="heading" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="300">{{.heading}}</div>
-                    <p data-aos="zoom-out-down" data-aos-easing="linear" data-aos-duration="300">{{.description}}</p>
-                    <p data-aos="zoom-out-down" data-aos-easing="linear" data-aos-duration="300" class="text-gradient hightlight">{{.heightlightText}}</p>
 
                    
 

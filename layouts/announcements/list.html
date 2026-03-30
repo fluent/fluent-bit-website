@@ -3,20 +3,26 @@
 
     {{- partial "header.html" . -}} 
     {{- partial "lastest-version.html" . -}}
-    <!--{{- partial "knowledge-base.html" . -}}
-    {{- partial "new-changes.html" . -}}
-     {{- partial "older-ver.html" . -}}   -->
-
-    <section class="section doc-content">
+    <section class="section doc-content release-notes release-index">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    {{.Content}}
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10">
+                    <div class="release-index-intro text-center">
+                        <p class="release-index-eyebrow">Featured release</p>
+                        <h2>Latest Fluent Bit release notes</h2>
+                        <p class="release-index-copy">Start with the newest stable release, then jump into the historical archive for older series and maintenance updates.</p>
+                    </div>
+                    <article class="announcement-article">
+                        {{.Content}}
+                    </article>
+                    <div class="release-index-actions text-center">
+                        <a href="/announcements/older-versions/" class="btn btn-gradient">Browse Older Versions</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- {{- partial "contributor.html" . -}} -->
+    {{- partial "older-ver.html" . -}}
 
 {{ end }}

@@ -9,6 +9,12 @@ headerTheme: light
 herobg: "/images/hero@2x.jpg"
 ---
 
+## OpenTelemetry-native data plane
+
+Fluent Bit is built for modern OpenTelemetry pipelines. It ingests and emits OTLP natively, processes telemetry efficiently at the edge or in-cluster, and routes data across hybrid environments without the operational weight of a larger collector deployment.
+
+Use Fluent Bit when you need a compact, high-performance telemetry data plane for logs, metrics, and traces.
+
 ## OpenTelemetry
 
 <br>
@@ -73,9 +79,8 @@ For detailed configuration instructions, visit the [Fluent Bit documentation](ht
 
 Join our community to stay updated, share your experiences, and get support from other Fluent Bit users:
 
-- **[Slack](https://launchpass.com/fluent-all)**: Engage with experts and other community members.
+- **[CNCF Slack](https://communityinviter.com/apps/cloud-native/cncf)**: Join the CNCF Slack workspace and connect in the `#fluent-bit` channel.
 - **[Twitter](https://twitter.com/fluentbit)**: Follow us for the latest news and announcements.
 - **[Newsletter](https://www.fluentd.org/newsletter)**: Sign up for updates on product information, events, and contributions.
 
 ---
-

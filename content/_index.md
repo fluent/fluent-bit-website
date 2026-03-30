@@ -24,12 +24,16 @@ howitworks:
   image: /images/how-back.svg
   btnText: Read how it works
   btnUrl: "/how-it-works/"
-  info: Fluent Bit enables you to collect logs and metrics from multiple sources, enrich them with filters, and distribute them to any defined destination.
+  otelLabel: OpenTelemetry
+  otelHeading: OpenTelemetry-native, built for real-world pipelines
+  subInfo: |
+   Fluent Bit provides native OpenTelemetry support through OTLP ingestion and delivery, while operating efficiently across hybrid environments. As a high-performance data plane, it moves, processes, and routes telemetry data at scale across logs, metrics, and traces.
+  info: Built for practical routing, enrichment, and delivery across modern environments
   lists:
-  - Optimized data parsing and routing
-  - Prometheus and OpenTelemetry compatible
-  - Stream processing functionality
-  - Built in buffering and error-handling capabilities
+  - Native OTLP ingestion and delivery for modern telemetry pipelines
+  - Efficient routing across hybrid, cloud, and on-prem environments
+  - High-performance processing across logs, metrics, and traces
+  - Built-in enrichment, buffering, and stream processing capabilities
 brand:
   enabled: true
   position: 2
@@ -65,7 +69,7 @@ ctaBoxed:
   image: /images/cloun-native.svg
   gitUser: "fluent"
   gitRepo: "fluent-bit/"
-  text: "Fluent Bit is a CNCF (Cloud Native Computing Foundation) graduated project under the umbrella of Fluentd."
+  text: "Fluent Bit is a CNCF graduated project under the Fluent organization."
   highlightText: "We are part of a large open source community. No vendor lock-in."
 highPerformance:
   enabled: false

@@ -9,9 +9,9 @@ community:
   position: 0
   list:
   - title: Slack
-    description: Join the Slack for Fluent Bit and Fluentd. Engage with experts, ask questions, and share best practices.
+    description: Join the CNCF Slack workspace and connect with maintainers and users in the Fluent Bit channel.
     logo: /images/slack-2.svg
-    buttonUrl: "https://launchpass.com/fluent-all"
+    buttonUrl: "https://communityinviter.com/apps/cloud-native/cncf"
     buttonText: "Join"
     tabOpen: "_blank"
   - title: Twitter

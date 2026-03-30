@@ -12,11 +12,13 @@
     {{- partial "knowledge-base.html" . -}}
     {{- partial "new-changes.html" . -}}
     {{- partial "contributor.html" . -}}
-    <section class="section doc-content">
+    <section class="section doc-content release-notes">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    {{.Content}}
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10">
+                    <article class="announcement-article">
+                        {{.Content}}
+                    </article>
                 </div>
             </div>
         </div>

@@ -1,8 +1,14 @@
 <section class="section old-ver">
     <div class="container">
-        <!-- <div class="row">
-            <div class="col"><h4>Older Versions</h4></div>
-        </div> -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="archive-intro text-center">
+                    <p class="archive-eyebrow">Release archive</p>
+                    <h3>Browse Fluent Bit release history</h3>
+                    <p class="archive-copy">Older release notes are grouped by major version so it is easier to find maintenance updates, release dates, and historical changes.</p>
+                </div>
+            </div>
+        </div>
         <div class="row">  
     {{ range (where .Site.Pages "Section" "announcements") }}
         {{ range .Sections }}

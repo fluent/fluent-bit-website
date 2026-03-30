@@ -1,5 +1,5 @@
 
-<section class="top-sec">
+<section class="top-sec{{ if eq .RelPermalink "/enterprise/" }} page-enterprise{{ end }}{{ if eq .RelPermalink "/opentelemetry/" }} page-opentelemetry{{ end }}{{ if eq .RelPermalink "/community/" }} page-community{{ end }}">
     <div class="container">
         <div class="row">
             <div class="col-12  justify-content-center align-items-center">
