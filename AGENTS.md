@@ -22,3 +22,21 @@ There is no automated test suite in this repository. Validation is primarily a s
 
 ## Commit & Pull Request Guidelines
 Recent history uses short prefixes such as `release:`, `feat:`, and `core:`. Follow that pattern and keep the subject imperative and specific, for example `feat: add OpenTelemetry landing page`. Pull requests should include a short summary, any linked issue or context, and screenshots for visible site changes. If you update release metadata, verify matching values in `config.toml`, announcement content, and any related data files.
+
+## Release Announcement Workflow
+When adding a new Fluent Bit release announcement:
+
+- Inspect prior announcement files for the target series under `content/announcements/<series>/`.
+- Inspect the Fluent Bit git repo at `/home/edsiper/c/fluent-bit` and compare the previous tag to the new tag.
+- Build the announcement content from the actual release delta.
+- Also scan the release series for user-facing features already present in the shipped version but easy to miss from a strict no-merges delta, especially new formats, encoders, and output/input plugin capabilities.
+- Add the new announcement file under `content/announcements/<series>/vX.Y.Z.md`.
+- Update `content/announcements/_index.md` so the main announcements page renders the newest announcement.
+- Update `content/announcements/<series>/_index.md` so the series page metadata points at the newest announcement.
+- Update `config.toml`: `lastVersion`, `releasedOn`, and `noteUrl`.
+- Include contributors, using the contributor names and GitHub handles from the relevant commits and PR authors when available.
+
+## Release Notes
+- The site-wide latest version banner reads from `config.toml`.
+- The main announcements landing page reads `content/announcements/_index.md`.
+- The version-series landing page reads `content/announcements/<series>/_index.md`.
