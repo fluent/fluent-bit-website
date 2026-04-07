@@ -62,7 +62,7 @@ performance:
   - heading: Extensible
     icon: /images/extensible.svg
     description: "Integration with all your technology - cloud native services, containers, streaming processors, and data backends."
-    heightlightText: "80+ Plugins for inputs, filters, analytics tools and outputs."
+    heightlightText: "Over 100 built-in plugins for inputs, filters, analytics tools and outputs."
 ctaBoxed:
   enabled: true
   position: 4
