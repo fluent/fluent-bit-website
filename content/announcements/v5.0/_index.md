@@ -6,9 +6,9 @@ url: "/announcements/v5.0/"
 herobg: "/images/hero@2x.jpg"
 latestVer: true
 releaseNotes:
-  heading: "Release Notes v5.0.2"
-  version: "v5.0.2"
-  text: "Fluent Bit is a Fast and Lightweight Telemetry Agent for Linux, BSD, macOS and Windows. We are proud to announce the availability of Fluent Bit v5.0.2. <br>
+  heading: "Release Notes v5.0.3"
+  version: "v5.0.3"
+  text: "Fluent Bit is a Fast and Lightweight Telemetry Agent for Linux, BSD, macOS and Windows. We are proud to announce the availability of Fluent Bit v5.0.3. <br>
   For people upgrading from previous versions you must read the Upgrading Notes section of our documentation:
   https://docs.fluentbit.io/manual/5.0/installation/upgrade_notes"
 ---
