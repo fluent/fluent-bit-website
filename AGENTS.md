@@ -30,6 +30,8 @@ When adding a new Fluent Bit release announcement:
 - Inspect the Fluent Bit git repo at `/home/edsiper/c/fluent-bit` and compare the previous tag to the new tag.
 - Build the announcement content from the actual release delta.
 - Also scan the release series for user-facing features already present in the shipped version but easy to miss from a strict no-merges delta, especially new formats, encoders, and output/input plugin capabilities.
+- Keep release notes high-level and value-focused. For reliability or security-sensitive fixes, avoid implementation details that could help readers target older versions.
+- Put bundled dependency or library updates in a `Libraries` section after `Core` and before `Plugins`; do not mix library upgrade bullets into `Core`.
 - Add the new announcement file under `content/announcements/<series>/vX.Y.Z.md`.
 - Update `content/announcements/_index.md` so the main announcements page renders the newest announcement.
 - Update `content/announcements/<series>/_index.md` so the series page metadata points at the newest announcement.
