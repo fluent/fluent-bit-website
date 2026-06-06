@@ -8,4 +8,4 @@ latestVer: true
 ---
 
 
-{{% content "announcements/v5.0/v5.0.6.md" %}}
+{{% content "announcements/v5.0/v5.0.7.md" %}}
