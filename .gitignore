@@ -5,3 +5,6 @@
 
 # Editor settings
 .idea/
+
+# AI files
+CLAUDE.md
