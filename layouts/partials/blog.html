@@ -11,7 +11,7 @@
                         <a href="{{ .Permalink }}">                        
                             <article class="card">
                             <div class="d-flex">
-                                <p class="mb-0 date">{{ .Date.Format $dateFormat }}
+                                <p class="mb-0 date">{{ if not .Date.IsZero }}{{ .Date.Format $dateFormat }}{{ end }}
                                     
                                 </p>
                             </div>

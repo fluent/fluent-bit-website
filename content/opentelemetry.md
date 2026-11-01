@@ -15,6 +15,12 @@ Fluent Bit is built for modern OpenTelemetry pipelines. It ingests and emits OTL
 
 Use Fluent Bit when you need a compact, high-performance telemetry data plane for logs, metrics, and traces.
 
+## Lua policies for OpenTelemetry
+
+[FTS — Fluent Typed Scripting](/fts/) lets you write Lua policies for logs, metrics, and traces with typed access to values and OpenTelemetry resources, scopes, and attributes. Redact structured fields, normalize context, or aggregate compatible metric series inside Fluent Bit.
+
+FTS is a development preview in the 5.2.0 source, not yet part of a stable release. [Explore FTS and its official quickstart](/fts/).
+
 ## OpenTelemetry
 
 <br>
