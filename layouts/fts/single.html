@@ -1,0 +1,20 @@
+{{ define "main" }}
+  {{ partial "header.html" . }}
+  <main class="fts-page">
+    <section class="fts-hero">
+      <div class="container">
+        <p class="fts-eyebrow">{{ site.Data.fts.name }}</p>
+        <h1 class="text-gradient">{{ site.Data.fts.headline }}</h1>
+        <p class="fts-intro">{{ .Description }}</p>
+        <a class="btn btn-gradient" href="{{ site.Data.fts.quickstart }}">Get started with FTS</a>
+        <a class="fts-secondary" href="#policy-in-action">See a policy in action ↓</a>
+        {{ partial "fts-availability.html" . }}
+      </div>
+    </section>
+    <section class="fts-content">
+      <div class="container">
+        <div class="page-article">{{ .Content }}</div>
+      </div>
+    </section>
+  </main>
+{{ end }}

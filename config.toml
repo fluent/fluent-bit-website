@@ -53,6 +53,12 @@ noteUrl = "announcements/v5.1.5"
         weight = 7
 
     [[menu.main]]
+      identifier = "fts"
+      url = "/fts/"
+      name = "FTS"
+      weight = 6
+
+    [[menu.main]]
         identifier = "slack"
         url = "https://communityinviter.com/apps/cloud-native/cncf"
         name = "slack"
