@@ -1,20 +1,35 @@
 {{ define "main" }}
   {{ partial "header.html" . }}
   <main class="fts-page">
-    <section class="fts-hero">
+    <section class="fts-hero" aria-labelledby="fts-title">
       <div class="container">
-        <p class="fts-eyebrow">{{ site.Data.fts.name }}</p>
-        <h1 class="text-gradient">{{ site.Data.fts.headline }}</h1>
-        <p class="fts-intro">{{ .Description }}</p>
-        <a class="btn btn-gradient" href="{{ site.Data.fts.quickstart }}">Get started with FTS</a>
-        <a class="fts-secondary" href="#policy-in-action">See a policy in action ↓</a>
-        {{ partial "fts-availability.html" . }}
+        <div class="fts-hero-grid">
+          <div class="fts-hero-copy">
+            <p class="fts-eyebrow">{{ site.Data.fts.name }}</p>
+            <h1 id="fts-title">Shape your telemetry <span class="text-gradient">with Lua.</span></h1>
+            <p class="fts-intro">{{ .Description }}</p>
+            <p class="fts-hero-detail">Configure a reusable policy pack or write your own Lua. Keep the logic close to your data.</p>
+            <div class="fts-actions">
+              <a class="btn btn-gradient" href="{{ site.Data.fts.quickstart }}">Get started with FTS</a>
+              <a class="fts-text-link" href="#packs">Explore policy packs <span aria-hidden="true">↗</span></a>
+            </div>
+            <p class="fts-preview"><span>{{ site.Data.fts.status }}</span> 5.2 source builds · Not in stable releases</p>
+          </div>
+          {{ partial "fts-demo.html" . }}
+        </div>
       </div>
     </section>
-    <section class="fts-content">
+    <nav class="fts-page-nav" aria-label="On this page">
       <div class="container">
-        <div class="page-article">{{ .Content }}</div>
+        <a href="#use-cases">Use cases</a>
+        <a href="#packs">Policy packs</a>
+        <a href="#signals">Logs, metrics &amp; traces</a>
+        <a href="#typed-values">Typed values</a>
+        <a href="#get-started">Get started</a>
       </div>
-    </section>
+    </nav>
+    <div class="fts-content container">{{ .Content }}</div>
   </main>
+  {{ $script := resources.Get "js/fts.js" | minify | fingerprint }}
+  <script src="{{ $script.RelPermalink }}" defer></script>
 {{ end }}

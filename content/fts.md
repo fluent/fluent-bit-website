@@ -6,133 +6,163 @@ headerTheme: light
 image: "/images/blog/1701353456-general-fluent-bit-preview-card.png"
 ---
 
-## A policy in action {#policy-in-action}
+<section class="fts-section" aria-labelledby="use-cases">
+<p class="fts-eyebrow">Your pipeline. Your policy.</p>
 
-A login event should help you investigate a request without sending its password to your backend. This policy redacts the structured password field and adds a consistent environment label.
+## Keep the telemetry you need. Shape what you send. {#use-cases}
 
-<div class="fts-example-grid">
-<div>
-
-### Input
-
-```json {linenos=false,hl_lines="0"}
-{"message":"login","password":"example-secret"}
-```
-
-</div>
-<div>
-
-### Lua policy
-
-```lua {linenos=false,hl_lines="0"}
-local fb = require("fluentbit")
-
-function process(log)
-  fb.redact(log.body, {"password"})
-  log.body:set("environment", "production")
-end
-```
-
-</div>
-<div>
-
-### Result
-
-```json {linenos=false,hl_lines="0"}
-{"message":"login","password":"[REDACTED]","environment":"production"}
-```
-
-</div>
-</div>
-
-The callback edits one log record. Returning nothing keeps its changes; returning `fb.DROP` removes the item. The [official quickstart]({{< fts-link "quickstart" >}}) shows how to attach a policy to a YAML pipeline and run it.
-
-Redaction matches the keys you name in the value you pass. It does not discover secrets inside message text or redact other attributes automatically. A failed policy rolls back its edits and drops the item by default; choosing `error_mode: keep` forwards the original without redaction.
-
-## Put your telemetry policy close to the source
+A secret in a log, inconsistent metric units, or a stream of successful probes can get in the way of useful telemetry. FTS lets you express how that data should reach your destinations, inside Fluent Bit.
 
 <div class="fts-use-cases">
 <div>
 
-### Redact sensitive fields
+### Protect sensitive fields
 
-Replace known keys in structured records and attributes before routing them to a destination. Attach the policy to the input when every destination needs the same redaction.
-
-</div>
-<div>
-
-### Normalize telemetry
-
-Align environment names, metric units, and OpenTelemetry resource attributes so that data from different services is easier to query together.
+Redact selected structured keys in log bodies and attributes. Apply privacy policies at the input when every destination needs the same treatment.
 
 </div>
 <div>
 
-### Reduce noise and cardinality
+### Normalize across services
 
-Drop selected log records and deliberately aggregate compatible metric series over the dimensions you need. Choose the policy for your data; FTS makes no automatic decisions about what to discard.
+Decode JSON messages, align OpenTelemetry context, and explicitly convert metric names and units to the conventions your queries expect.
+
+</div>
+<div>
+
+### Reduce noise and dimensions
+
+Keep failures and useful context while suppressing selected successful probes. Aggregate compatible metric series over the dimensions you need.
+
+</div>
+</div>
+</section>
+
+<section class="fts-section" aria-labelledby="packs">
+<div class="fts-section-grid">
+<div>
+<p class="fts-eyebrow">Reusable Lua. Configurable policies.</p>
+
+## Start with a pack. Make it your policy. {#packs}
+
+A pack contains Lua processing blocks with declared parameters and fixtures. Install the files locally, choose a block in YAML, and supply your settings. Operators can use a pack without writing Lua; authors can extend the policy without creating a native plugin.
+
+A **recipe** runs selected blocks in order. Compose core operations and pack blocks for the same signal, with parameter validation before ingestion starts.
+
+[Install and run your first pack]({{< fts-link "quickstart" >}}) · [Write or extend a pack]({{< fts-link "authoring" >}})
+
+Packs are trusted local configuration. Fluent Bit does not download or auto-update them. Pin and review the installed artifact.
+
+</div>
+<div>
+
+{{< fts-recipe >}}
 
 </div>
 </div>
 
-## Logs, metrics, and traces
+### Policies you can build on
 
-Each signal has its own processor entry and policy: one log record, one metric family, or one span per callback. These snippets are separate policies, not a combined script.
+Each pack documents its source requirements, parameters, limits, and independent fixtures. Choose one that matches your input contract.
 
-### Logs: normalize OpenTelemetry context
+{{< fts-packs >}}
 
-```lua {linenos=false,hl_lines="0"}
-local fb = require("fluentbit")
+[Browse the full policy catalog]({{< fts-link "examples" >}})
+</section>
 
-function process(log)
-  if fb.is_otel(log) then
-    log.resource.attributes:set("deployment.environment.name", "production")
-  end
-end
-```
+<section class="fts-section" aria-labelledby="signals">
+<p class="fts-eyebrow">One runtime. Three signals.</p>
 
-OpenTelemetry resources, scopes, and attributes are exposed as properties. Ordinary logs need an OpenTelemetry envelope before using those properties.
+## Write the transformation your data needs. {#signals}
 
-### Metrics: keep useful dimensions
+For custom logic, attach a Lua script to an input or output processor. Use a separate policy for each signal: one log record, one metric family, or one span per callback. These examples are independent scripts.
 
-```lua {linenos=false,hl_lines="0"}
-local fb = require("fluentbit")
+{{< fts-signals >}}
 
-function process(metric)
-  if metric.name == "http.server.requests" then
-    fb.aggregate_metric(metric, {"http.route", "http.response.status_code"}, "sum")
-  end
-end
-```
+OpenTelemetry resource, scope, and attributes are available as properties. Logs must carry OpenTelemetry context to use those properties; ordinary logs can first pass through the OpenTelemetry envelope processor.
+</section>
 
-For a compatible request counter, keep route and status dimensions and combine series whose time windows match. Aggregate explicitly: simply removing attributes can create duplicate series.
+<section class="fts-section fts-typed-section" aria-labelledby="typed-values">
+<div class="fts-section-grid">
+<div>
+<p class="fts-eyebrow">Change the field. Preserve the value.</p>
 
-### Traces: redact span attributes
+## What does “typed” mean? {#typed-values}
 
-```lua {linenos=false,hl_lines="0"}
-local fb = require("fluentbit")
+A request ID should still be the same ID after you redact a password. FTS exposes telemetry values with their types intact: exact 64-bit integers, doubles, binary data, nulls, maps, and arrays.
 
-function process(span)
-  fb.redact(span.attributes, {"authorization", "password"})
-end
-```
+Lua remains dynamically typed. Accessors check values at runtime, and explicit constructors let you create exact integers. Untouched values retain their type and value; OpenTelemetry's own constraints still apply.
 
-This edits span attributes; events and resource attributes need their own policy operations. FTS processes individual spans. Use a trace sampling processor when you need decisions about whole traces.
+</div>
+<div class="fts-value-card" aria-label="Examples of preserved telemetry types">
+  <p class="fts-code-label">Values your policy leaves untouched</p>
+  <dl>
+    <div><dt>Integer ID</dt><dd><code>9007199254740993</code><span>Exact 64-bit value</span></dd></div>
+    <div><dt>Null</dt><dd><code>null</code><span>Preserved as null</span></dd></div>
+    <div><dt>Binary</dt><dd><code>bytes</code><span>Preserved as binary data</span></dd></div>
+    <div><dt>Context</dt><dd><code>resource · scope</code><span>Structured OpenTelemetry access</span></dd></div>
+  </dl>
+</div>
+</div>
+</section>
 
-## What does “typed” mean?
+<section class="fts-section" aria-labelledby="workflow">
+<p class="fts-eyebrow">From policy to a reviewed pipeline</p>
 
-A large integer ID should remain the same ID after you edit an unrelated field. A null should remain a null, and binary data should remain binary data. FTS gives your Lua policy access to typed telemetry values, preserving the type and value of fields it leaves untouched, including exact 64-bit integers, maps, and arrays.
+## Compose. Validate. Replay. {#workflow}
 
-Lua remains dynamically typed. FTS does not add static type checking. Typed accessors validate values at runtime: reading a number as a string raises an error. When creating values, use explicit integer constructors where needed; ordinary Lua numbers are stored as doubles. OpenTelemetry's own value constraints still apply.
+<div class="fts-workflow">
+<div>
 
-FTS complements the existing Lua filter. Use FTS for programmable policies across signals and typed OpenTelemetry access. Existing Lua filter scripts can remain useful, especially when they need Lua modules or classic configuration. The callback and value models differ, so migration requires adapting the policy.
+### 01 / Compose
 
-## Try a policy in your pipeline
+Select a pack or write trusted Lua. Declare the signal and source schema; order parsing, normalization, and redaction before decisions that use those fields.
 
-Start with a development build containing FTS. Native builds need `FLB_PROCESSOR_FTS`, `FLB_LUAJIT`, and `FLB_YYJSON` enabled. Policies use YAML processors on inputs or outputs, with a separate policy for each signal.
+</div>
+<div>
 
-- [Get started with FTS]({{< fts-link "quickstart" >}})
-- [Configuration and API reference]({{< fts-link "reference" >}})
-- [Official examples for logs, metrics, and traces]({{< fts-link "examples" >}})
+### 02 / Validate
 
-The official README currently hosts the quickstart, reference, and signal examples. See [How Fluent Bit works](/how-it-works/) and [OpenTelemetry with Fluent Bit](/opentelemetry/) for the surrounding pipeline.
+Run `fluent-bit --dry-run -c fluent-bit.yaml` to check configuration and pack loading. Authors and tools can inspect exported parameter schemas and Lua API declarations.
+
+</div>
+<div>
+
+### 03 / Replay
+
+Test representative inputs and independently specified outputs through the real Fluent Bit runtime. Typed fixtures help catch accidental changes to IDs, values, and context.
+
+</div>
+</div>
+
+[Authoring schemas and API declarations]({{< fts-link "schemas" >}}) · [Typed fixture runner]({{< fts-link "fixtures" >}})
+
+### When a policy fails
+
+Item edits roll back together. By default, `error_mode: drop` removes the item; `keep` forwards its original, including any unredacted data. Redaction targets only the values and structured keys you specify; it does not discover secrets in free-form text.
+
+Instruction, memory, and output limits help contain policy mistakes. Policies and packs are trusted configuration; the restricted environment is not a security boundary.
+
+### When a policy needs state
+
+The development runtime also provides local deduplication, throttling, and bounded windows. These have specific signal and placement requirements. State is local and volatile across restart, reload, and shutdown; local decisions do not guarantee delivery. Read the [state and window contract]({{< fts-link "state" >}}) before using them.
+
+FTS complements the existing Lua filter. Existing scripts may still need its module access, record splitting, or classic configuration. Adapting a policy to FTS requires its callback and value model, not just a configuration rename.
+</section>
+
+<section class="fts-section fts-get-started" aria-labelledby="get-started">
+<p class="fts-eyebrow">Try it with your telemetry</p>
+
+## Start with one policy. {#get-started}
+
+Run a complete pack example, inspect the output, then adapt its parameters to representative data from your own pipeline.
+
+{{< fts-availability >}}
+
+<div class="fts-actions">
+<a class="btn btn-gradient" href="{{< fts-link "quickstart" >}}">Get started with FTS</a>
+<a class="fts-text-link" href="{{< fts-link "reference" >}}">Read the processor reference ↗</a>
+</div>
+
+The guides above are maintained in the official Fluent Bit source repository. [OpenTelemetry with Fluent Bit](/opentelemetry/) and [How it works](/how-it-works/) explain the surrounding pipeline. Share your policy needs and feedback in [GitHub Discussions](https://github.com/fluent/fluent-bit/discussions).
+</section>
