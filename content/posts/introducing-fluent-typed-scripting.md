@@ -64,6 +64,14 @@ Span policies can edit attributes, events, and resource context. They operate on
 
 Policies use typed accessors and constructors rather than converting every value to a Lua table or number. OpenTelemetry context is available through properties such as `log.resource.attributes`; scripts do not need to decode raw metadata to reach it. OpenTelemetry properties on logs require that context to be present.
 
+## Reuse policies with packs and recipes
+
+Operators can now select reusable Lua blocks in YAML recipes. Install a reviewed pack locally, supply its parameters, and run the blocks in order. The [policy catalog]({{< fts-link "examples" >}}) includes structured redaction, successful probe reduction, Kubernetes metadata hygiene, metric dimension reduction, and stable span naming, each with a declared input contract.
+
+Authors keep policy logic in Lua and provide typed fixtures with independent expected outputs. Exported parameter schemas and Lua API declarations help people and tools inspect the contract. [The pack guide]({{< fts-link "quickstart" >}}) includes installation, a complete pipeline, expected output, and preflight validation. Packs are trusted local files; Fluent Bit does not download or auto-update them.
+
+The current development API also adds JSON helpers for unpacking a message body or decoding a selected field in place. Check the result and choose how to handle records that cannot be decoded before applying structured redaction.
+
 ## A policy inside the pipeline
 
 Attach an FTS processor to an input or output using YAML. Each signal uses a separate processor entry and policy. A callback receives one log record, one metric family, or one span, then keeps its edits or drops that item. Processor instances do not share Lua globals across signals.
@@ -78,6 +86,6 @@ FTS complements the existing Lua filter. The Lua filter remains useful for exist
 
 {{< fts-availability >}}
 
-The current quickstart and reference live in the official source README. Dedicated documentation and runnable recipe pages are being prepared. Stable release notes will identify the first shipped version when it is released.
+The current quickstart, reference, runnable packs, and authoring guides live in the official Fluent Bit source repository. Stable release notes will identify the first shipped version when it is released.
 
 Explore [FTS's capabilities and signal examples](/fts/), then [get started with FTS]({{< fts-link "quickstart" >}}). Try a policy against representative data and share your feedback through [Fluent Bit's GitHub discussions](https://github.com/fluent/fluent-bit/discussions): which transformations do you need, and where could the policy API be clearer?

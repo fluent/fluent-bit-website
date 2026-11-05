@@ -1,0 +1,22 @@
+<div class="fts-signal-explorer" data-fts-signals>
+  <div class="fts-signal-tabs" aria-label="Signal examples" hidden>
+    {{ range $index, $signal := site.Data.fts.signals }}
+      <button type="button" id="fts-tab-{{ .id }}" data-fts-tab="{{ .id }}">{{ .name }}</button>
+    {{ end }}
+  </div>
+  {{ range site.Data.fts.signals }}
+    <section class="fts-signal-panel" id="fts-panel-{{ .id }}" data-fts-panel="{{ .id }}">
+      <div>
+        <p class="fts-eyebrow">{{ .name }}</p>
+        <h3>{{ .title }}</h3>
+        <p>{{ .text }}</p>
+        <p class="fts-signal-note">{{ .note }}</p>
+        <a class="fts-text-link" href="{{ site.Data.fts.reference }}#{{ .id }}">{{ .name }} API reference <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="fts-code-card">
+        <p class="fts-code-label">{{ .name }} policy / Lua</p>
+        {{ highlight .code "lua" "linenos=false,hl_lines=0,style=monokai" }}
+      </div>
+    </section>
+  {{ end }}
+</div>

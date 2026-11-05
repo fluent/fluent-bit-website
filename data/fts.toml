@@ -1,8 +1,106 @@
+# Verified against fluent/fluent-bit 59a3ecea4867b85d0a6ec7e0eb51d34877683851 on 2026-11-05.
 name = "FTS — Fluent Typed Scripting"
 headline = "Shape your telemetry with Lua."
 description = "Write policies for logs, metrics, and traces directly in Fluent Bit, with typed access to telemetry values and OpenTelemetry context."
-quickstart = "https://github.com/fluent/fluent-bit/blob/master/plugins/processor_fts/README.md#quick-start"
-reference = "https://github.com/fluent/fluent-bit/blob/master/plugins/processor_fts/README.md#configuration"
-examples = "https://github.com/fluent/fluent-bit/blob/master/plugins/processor_fts/README.md#logs"
+quickstart = "https://github.com/fluent/fluent-bit/blob/master/packs/fts/README.md"
+reference = "https://github.com/fluent/fluent-bit/blob/master/plugins/processor_fts/README.md"
+examples = "https://github.com/fluent/fluent-bit/blob/master/packs/fts/CATALOG.md"
+authoring = "https://github.com/fluent/fluent-bit/blob/master/packs/fts/AUTHORING.md"
+schemas = "https://github.com/fluent/fluent-bit/blob/master/plugins/processor_fts/schemas/README.md"
+fixtures = "https://github.com/fluent/fluent-bit/blob/master/tools/fts/README.md"
+state = "https://github.com/fluent/fluent-bit/blob/master/documentation/fts/state-and-windows.md"
 status = "Development preview"
-availability = "FTS is in the development source for Fluent Bit 5.2.0 on master. It has not shipped in a stable release and is absent from v5.1.5 and the 5.1 series. Build from source with FTS enabled; published stable packages and container images do not include it."
+availability = "FTS, recipes, and Lua packs are in the development source for Fluent Bit 5.2.0 on master. They have not shipped in a stable release. The latest stable release, v5.1.5, and the 5.1 series do not include FTS. Use a source build containing the APIs required by your policy."
+
+[demo]
+input = '{"id":9007199254740993,"password":"example-secret"}'
+output = '{"id":9007199254740993,"password":"[REDACTED]","environment":"production"}'
+policy = '''local fb = require("fluentbit")
+
+function process(log)
+  fb.redact(log.body, {"password"})
+  log.body:set("environment", "production")
+end'''
+
+[recipe]
+code = '''- name: fts
+  packages_dir: /opt/fluent-bit/packs/fts
+  packs: [logs/structured-secrets/pack.json]
+  error_mode: drop
+  recipe:
+    - id: protect_secrets
+      use: org.fluentbit.policy.structured-secrets/apply
+      with:
+        keys: [password, authorization]'''
+
+[[packs]]
+signal = "Logs"
+title = "Protect structured secrets"
+text = "Replace selected password, authorization, and API key fields while preserving unrelated values."
+path = "logs/structured-secrets"
+[[packs]]
+signal = "Logs"
+title = "Keep useful probe events"
+text = "Suppress only matching fast, successful probes. Keep failures, slow requests, and incomplete records."
+path = "logs/successful-probes"
+[[packs]]
+signal = "Logs"
+title = "Clean up Kubernetes metadata"
+text = "Trim labels and annotations from already-enriched logs while retaining workload identity."
+path = "logs/kubernetes-hygiene"
+[[packs]]
+signal = "Logs"
+title = "Protect GenAI log content"
+text = "Redact declared structured prompt and message fields in log bodies and OpenTelemetry log attributes."
+path = "logs/genai-privacy"
+[[packs]]
+signal = "Metrics"
+title = "Reduce metric dimensions"
+text = "Aggregate compatible additive gauge points within a family over the dimensions you choose."
+path = "metrics/metric-dimensions"
+[[packs]]
+signal = "Traces"
+title = "Give spans stable names"
+text = "Name server spans from trusted route templates and HTTP methods, preserving IDs and parent relationships."
+path = "traces/span-operations"
+
+[[signals]]
+id = "logs"
+name = "Logs"
+title = "Decode first. Redact what you intend."
+text = "Unpack a declared JSON message into typed fields, then redact known keys. This policy drops records that cannot be decoded so their raw message is not forwarded."
+note = "Key-based redaction only visits the value passed to it. Free-form text and other attribute maps need explicit policies."
+code = '''local fb = require("fluentbit")
+
+function process(log)
+  if not fb.unpack_json(log, "message") then
+    return fb.DROP
+  end
+  fb.redact(log.body, {"password", "authorization"})
+end'''
+[[signals]]
+id = "metrics"
+name = "Metrics"
+title = "Use the dimensions that answer your questions."
+text = "For a compatible request counter, keep route and status dimensions and deliberately combine matching series."
+note = "Aggregation is within the current metric family and matching time windows. Resources and scopes remain distinct; this is not a global cardinality cap."
+code = '''local fb = require("fluentbit")
+
+function process(metric)
+  if metric.name == "http.server.requests" then
+    fb.aggregate_metric(metric,
+      {"http.route", "http.response.status_code"}, "sum")
+  end
+end'''
+[[signals]]
+id = "traces"
+name = "Traces"
+title = "Change attributes. Keep the trace connected."
+text = "Redact selected span attributes without rewriting trace IDs, span IDs, or parent relationships."
+note = "Events, links, and resource attributes need their own operations. FTS sees one span per callback; use a sampling processor for whole-trace decisions."
+code = '''local fb = require("fluentbit")
+
+function process(span)
+  fb.redact(span.attributes,
+    {"password", "authorization"})
+end'''
