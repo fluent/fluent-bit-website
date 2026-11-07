@@ -1,7 +1,6 @@
 {{ $summary := partial "benchmarks/summary.html" . }}
 <aside class="benchmark-callout" aria-label="FTS benchmark results">
-  <p class="benchmark-eyebrow">FTS scripting performance</p>
-  <h3>{{ printf "%.0f–%.0f" $summary.fts_low $summary.fts_high }}% less CPU in the measured log policies</h3>
-  <p>Nine equivalent-policy tests compare FTS on Fluent Bit 5.2 with Lua on 5.1.0. CPU and peak RSS vary by policy; input and output processing have different memory tradeoffs.</p>
-  <a href="/benchmarks/5.2/#fts">Compare FTS and Lua results ↗</a>
+  <h3>Measured scripting performance</h3>
+  <p>In nine log-policy benchmarks, FTS on Fluent Bit 5.2 used <strong>{{ printf "%.0f–%.0f" $summary.fts_low $summary.fts_high }}% less CPU</strong> than equivalent Lua policies on 5.1.0.</p>
+  <a href="/benchmarks/5.2/#fts">See CPU and memory results ↗</a>
 </aside>

@@ -56,14 +56,13 @@
 }
 .fts-section { padding: 72px 0; border-bottom: 1px solid var(--fts-border); }
 .fts-section-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; align-items: center; }
-.fts-use-cases, .fts-workflow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 36px; }
+.fts-use-cases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 36px; }
 .fts-use-cases {
   > div { border-top: 3px solid #19a4b2; padding: 24px 0 0; }
   p { margin-bottom: 0; }
 }
-.fts-page .fts-use-cases h3, .fts-page .fts-workflow h3 { font-size: 20px; }
+.fts-page .fts-use-cases h3 { font-size: 20px; }
 .fts-code-card { min-width: 0; padding: 26px; border-radius: 16px; background: #152335; }
-.fts-section-grid + h3 { margin-top: 46px; }
 .fts-signal-explorer { margin: 32px 0; padding: 30px; border-radius: 22px; border: 1px solid var(--fts-border); background: #fff; }
 .fts-signal-tabs {
   display: flex; flex-wrap: wrap; gap: 6px; width: fit-content; padding: 5px; margin-bottom: 30px; border-radius: 10px; background: #edf3f7;
@@ -90,7 +89,6 @@
   code { color: #1c5689; font-size: 13px; overflow-wrap: anywhere; }
   span { display: block; margin-top: 6px; color: #526174; font-size: 12px; line-height: 1.5; }
 }
-.fts-workflow { margin-bottom: 28px; }
 .fts-get-started { border: 0; padding-bottom: 80px; }
 .fts-status {
   margin: 28px 0; padding: 24px 28px; border-left: 4px solid #2372b8; background: #eef5fa; border-radius: 0 16px 16px 0;
@@ -126,7 +124,7 @@
 }
 @media (max-width: 767px) {
   .fts-hero { padding: 36px 0 40px; }
-  .fts-hero-grid, .fts-section-grid, .fts-use-cases, .fts-workflow { grid-template-columns: minmax(0, 1fr); }
+  .fts-hero-grid, .fts-section-grid, .fts-use-cases { grid-template-columns: minmax(0, 1fr); }
   .fts-hero h1 { font-size: 46px; }
   .fts-hero .fts-intro { font-size: 18px; }
   .fts-demo-step, .fts-demo .fts-demo-heading { padding: 16px 18px; }
@@ -143,4 +141,19 @@
   .fts-home-card { display: block; padding: 28px 24px; }
   .fts-home-card h2 { font-size: 30px; }
   .fts-home-card .btn { margin-top: 20px; }
+}
+
+.fts-more-examples {
+  margin: 24px 0 0;
+  padding: 20px 24px;
+  background: #fff;
+  border: 1px solid #dce7ef;
+  border-radius: 14px;
+
+  summary { color: #1c5689; font-size: 16px; font-weight: 500; cursor: pointer; line-height: 1.6; }
+  summary:focus-visible { outline: 3px solid #2372b8; outline-offset: 5px; }
+  &[open] > summary { margin-bottom: 20px; }
+  .fts-signal-explorer { padding: 0; margin-bottom: 0; border: 0; }
+  ul { margin-top: 20px; padding-left: 24px; }
+  li { margin-bottom: 12px; }
 }

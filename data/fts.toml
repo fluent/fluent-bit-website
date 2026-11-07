@@ -10,20 +10,19 @@ availability = "FTS is included in Fluent Bit 5.2. Use a build with the FTS proc
 
 [demo]
 input = '{"id":9007199254740993,"password":"example-secret"}'
-output = '{"id":9007199254740993,"password":"[REDACTED]","environment":"production"}'
+output = '{"id":9007199254740993,"password":"[REDACTED]"}'
 policy = '''local fb = require("fluentbit")
 
 function process(log)
   fb.redact(log.body, {"password"})
-  log.body:set("environment", "production")
 end'''
 
 [[signals]]
 id = "logs"
 name = "Logs"
-title = "Decode first. Redact what you intend."
-text = "Unpack a declared JSON message into typed fields, then redact known keys. This policy drops records that cannot be decoded so their raw message is not forwarded."
-note = "Key-based redaction only visits the value passed to it. Free-form text and other attribute maps need explicit policies."
+title = "Clean up application logs"
+text = "Read a JSON message and hide its password and authorization fields."
+note = "This example drops records when the message is missing or cannot be read as a JSON object."
 code = '''local fb = require("fluentbit")
 
 function process(log)
@@ -35,9 +34,9 @@ end'''
 [[signals]]
 id = "metrics"
 name = "Metrics"
-title = "Use the dimensions that answer your questions."
-text = "For a compatible request counter, keep route and status dimensions and deliberately combine matching series."
-note = "Aggregation is within the current metric family and matching time windows. Resources and scopes remain distinct; this is not a global cardinality cap."
+title = "Keep the metric labels you need"
+text = "Combine matching request counts by route and status."
+note = "Only points in the same metric family with matching time windows are combined."
 code = '''local fb = require("fluentbit")
 
 function process(metric)
@@ -49,9 +48,9 @@ end'''
 [[signals]]
 id = "traces"
 name = "Traces"
-title = "Change attributes. Keep the trace connected."
-text = "Redact selected span attributes without rewriting trace IDs, span IDs, or parent relationships."
-note = "Events, links, and resource attributes need their own operations. FTS sees one span per callback; use a sampling processor for whole-trace decisions."
+title = "Hide sensitive span fields"
+text = "Replace password and authorization values in span attributes."
+note = "Trace IDs and parent relationships stay unchanged. Other fields need their own redaction rules."
 code = '''local fb = require("fluentbit")
 
 function process(span)
