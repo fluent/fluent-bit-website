@@ -1,0 +1,36 @@
+{{ $summary := partial "benchmarks/summary.html" . }}
+<section class="home-benchmarks" aria-labelledby="home-benchmarks-title">
+  <div class="container">
+    <div class="home-benchmarks-card">
+      <div class="home-benchmarks-heading">
+        <div>
+          <p class="benchmark-eyebrow">Fluent Bit v5.2 / performance benchmarks</p>
+          <h2 id="home-benchmarks-title">More telemetry. Less overhead.</h2>
+          <p>Explore throughput, CPU, memory, and buffering measurements.</p>
+        </div>
+        <a class="btn btn-gradient" href="/benchmarks/5.2/">Explore 5.2 benchmarks</a>
+      </div>
+      <div class="home-benchmarks-results" aria-label="Measured benchmark highlights">
+        <a class="home-benchmarks-result" href="/benchmarks/5.2/#otlp">
+          <span class="home-benchmarks-label">Throughput vs. Fluent Bit 5.1</span>
+          <strong>{{ printf "%.1f" $summary.ratio }}<span>×</span></strong>
+          <span>JSON transformation throughput with memory buffering.</span>
+          <span class="home-benchmarks-detail">See OTLP results ↗</span>
+        </a>
+        <a class="home-benchmarks-result" href="/benchmarks/5.2/#otlp">
+          <span class="home-benchmarks-label">Throughput vs. OpenTelemetry Collector</span>
+          <strong>{{ printf "%.1f" $summary.collector_ratio }}<span>×</span></strong>
+          <span>The same JSON workload, compared with Collector 0.163.</span>
+          <span class="home-benchmarks-detail">See OTLP results ↗</span>
+        </a>
+        <a class="home-benchmarks-result" href="/benchmarks/5.2/#fts">
+          <span class="home-benchmarks-label">CPU savings with FTS</span>
+          <strong>{{ printf "%.0f" $summary.fts_low }}–{{ printf "%.0f" $summary.fts_high }}<span>%</span></strong>
+          <span>Less CPU than equivalent Lua log policies on Fluent Bit 5.1.0.</span>
+          <span class="home-benchmarks-detail">See FTS results ↗</span>
+        </a>
+      </div>
+      <p class="home-benchmarks-note">Measured workloads under the conditions in each comparison. Explore CPU and memory tradeoffs in the full report.</p>
+    </div>
+  </div>
+</section>

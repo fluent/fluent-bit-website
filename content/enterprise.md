@@ -23,26 +23,12 @@ enterprise:
     buttonUrl: "https://chronosphere.io/contact/?utm_source=fluent-bit&utm_medium=referral&utm_content=enterprise-tile"
     buttonText: "Learn more"
     tabOpen: "_blank"
-  - title: ITOCHU Techno-Solutions America, Inc.
-    description: "Enterprise services from a global IT solution provider.  Services include: consulting, technology enablement, and a global service desk."
-    logo: /images/fluentd.svg
-    buttonUrl: "https://fluentd.ctc-america.com/"
-    buttonText: "Learn more"
-    tabOpen: "_blank"
   - title: ClearCode
     description: >
       ClearCode is a core maintainer of Fluentd since 2014, based in Japan.  
       クリアコードは、日本国内において航空会社、官公庁、通信事業者をはじめとした大規模ユーザーに対する支援を行ってきました。 ご相談にはFluentd/Fluent Bitのコアメンテナが対応いたしますので、まずはお気軽にお問い合わせください。
     logo: /images/ClearCode.svg
     buttonUrl: "https://www.clear-code.com/services/fluentd.html"
-    buttonText: "Learn more"
-    tabOpen: "_blank"
-  - title: Fluent.Do
-    description: >
-      Fluent.Do provide various consulting and professional services for Fluent projects and their users.
-      They are based in the EU and are comprised of Fluent Bit maintainers.
-    logo: /images/fluentdo-logo.jpg
-    buttonUrl: "https://fluent.do/"
     buttonText: "Learn more"
     tabOpen: "_blank"
 ---

@@ -1,7 +1,0 @@
-{{ $summary := partial "benchmarks/summary.html" . }}
-<div class="benchmark-callout">
-  <p class="benchmark-eyebrow">Fluent Bit 5.2 / measured performance</p>
-  <h3>See how your pipeline compares.</h3>
-  <p><strong>{{ printf "%.2f" $summary.rate }} million records/s</strong> in the measured OTLP/HTTP JSON transformation: one log-attribute update, memory buffering, and four server CPUs.</p>
-  <a href="/benchmarks/5.2/">Explore throughput, CPU, memory, and methods ↗</a>
-</div>

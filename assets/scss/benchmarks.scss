@@ -67,3 +67,38 @@
   .benchmark-page details { padding: 16px; }
   .benchmark-page .benchmark-lead { font-size: 18px; }
 }
+
+.hero-benchmark-link { margin: 18px 0 24px; }
+.hero-benchmark-link a { color: #1c5689; font-size: 15px; font-weight: 500; text-underline-offset: 4px; }
+.home-benchmarks { order: 1; padding: 24px 0; }
+.home-benchmarks-card { padding: 40px; border-radius: 28px; background: #f3f8fb; border: 1px solid #dce7ef; }
+.home-benchmarks-heading { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-bottom: 28px; }
+.home-benchmarks-heading > div { min-width: 0; }
+.home-benchmarks-heading .btn { flex-shrink: 0; }
+.home-benchmarks-card h2 { font-size: 34px; line-height: 1.2; letter-spacing: -.025em; }
+.home-benchmarks-card p { font-size: 17px; line-height: 1.7; }
+.home-benchmarks-card .benchmark-eyebrow { color: #2372b8; font-size: 13px; font-weight: 500; }
+.home-benchmarks-results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.home-benchmarks-result { display: flex; flex-direction: column; gap: 18px; padding: 28px; border-radius: 20px; background: linear-gradient(145deg, #1c5689, #123b65); color: #fff; text-decoration: none; transition: transform .2s ease; }
+.home-benchmarks-result:hover, .home-benchmarks-result:focus-visible { color: #fff; transform: translateY(-4px); text-decoration: none; outline: 3px solid #43c1df; outline-offset: 3px; }
+.home-benchmarks-result > span { font-size: 15px; line-height: 1.6; }
+.home-benchmarks-result .home-benchmarks-label { font-size: 12px; font-weight: 500; min-height: 38px; color: #d0ecff; }
+.home-benchmarks-result strong { font-size: clamp(40px, 4.7vw, 66px); line-height: 1.1; letter-spacing: -.04em; color: #fff; white-space: nowrap; }
+.home-benchmarks-result strong span { font-size: .7em; }
+.home-benchmarks-result .home-benchmarks-detail { margin-top: auto; font-size: 12px; color: #d0ecff; }
+.home-benchmarks-card .home-benchmarks-note { margin: 20px 0 0; color: #526174; font-size: 12px; }
+@media (max-width: 991px) {
+  .home-benchmarks-heading { align-items: flex-start; flex-direction: column; }
+  .home-benchmarks-result { padding: 22px; }
+}
+@media (max-width: 767px) {
+  .home-benchmarks-card { padding: 28px 24px; }
+  .home-benchmarks-card h2 { font-size: 28px; }
+  .home-benchmarks-results { grid-template-columns: minmax(0, 1fr); }
+  .home-benchmarks-result strong { font-size: 58px; }
+  .home-benchmarks-result .home-benchmarks-label { min-height: 0; }
+  .home-benchmarks-card .btn { padding: 18px 24px; white-space: normal; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-benchmarks-result { transition: none; }
+}

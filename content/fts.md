@@ -1,17 +1,37 @@
 ---
 title: "FTS — Fluent Typed Scripting"
 description: "Write policies for logs, metrics, and traces directly in Fluent Bit, with typed access to telemetry values and OpenTelemetry context."
-intro: "Use Lua to hide sensitive fields, make your data consistent, and filter out unwanted events before they reach your backend."
+intro: "FTS is Fluent Bit’s native processor for logs, metrics, and traces. Write your rules in Lua; FTS preserves telemetry types and OpenTelemetry context."
 type: fts
 headerTheme: light
 image: "/images/blog/1701353456-general-fluent-bit-preview-card.png"
 ---
 
+<section class="fts-section" aria-labelledby="lua-comparison">
+
+## Already using the Lua filter? {#lua-comparison}
+
+Both use Lua syntax. FTS adds a native telemetry-processing model: Fluent Bit manages typed signal data and policy errors while your script defines the transformation.
+
+<div class="fts-comparison" role="region" aria-label="Lua filter and FTS comparison" tabindex="0">
+
+| | Lua filter | FTS processor |
+| --- | --- | --- |
+| Signals | Logs | Logs, metrics, and traces |
+| Values in the script | Converted Lua tables and numbers | Typed telemetry values, including exact integers, nulls, and binary data |
+| OpenTelemetry context | Group and record metadata tables through the extended callback | Named resource, scope, and attribute properties |
+| If a running policy fails, by default | The original log chunk passes through | Changes to the affected item roll back; that item is dropped |
+
+</div>
+
+The Lua filter has settings for integer fields, nulls, arrays, and timestamp precision. FTS exposes a typed value model directly. Keep working Lua filter scripts when they meet your needs; choose FTS for typed, multi-signal policies and explicit error handling.
+</section>
+
 <section class="fts-section" aria-labelledby="use-cases">
 
 ## Your data. Your rules. {#use-cases}
 
-A policy is a small Lua script that tells Fluent Bit what to change, keep, or drop.
+An FTS policy tells the processor what to change, keep, or drop. Lua is the interface for expressing those rules.
 
 <div class="fts-use-cases">
 <div>
