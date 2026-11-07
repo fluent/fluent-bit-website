@@ -69,7 +69,18 @@
 }
 
 .hero-benchmark-link { margin: 18px 0 24px; }
-.hero-benchmark-link a { color: #1c5689; font-size: 15px; font-weight: 500; text-underline-offset: 4px; }
+.hero-benchmark-link a { display: inline-flex; align-items: center; gap: 16px; max-width: 100%; padding: 16px 22px; border: 1px solid #c7dce9; border-radius: 16px; background: linear-gradient(110deg, #f0f8fc, #fff); color: #1c5689; text-decoration: none; text-align: left; }
+.hero-benchmark-link a:hover { background: #e7f4f9; border-color: #2372b8; text-decoration: none; }
+.hero-benchmark-link a:focus-visible { outline: 3px solid #2372b8; outline-offset: 4px; }
+.hero-benchmark-icon { flex-shrink: 0; color: #159caf; }
+.hero-benchmark-copy { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.hero-benchmark-copy strong { font-size: 15px; line-height: 1.4; font-weight: 500; }
+.hero-benchmark-copy > span { font-size: 12px; line-height: 1.5; color: #526174; }
+.hero-benchmark-arrow { margin-left: 8px; font-size: 24px; }
+@media (max-width: 767px) {
+  .hero-benchmark-link a { width: 100%; padding: 14px; gap: 12px; }
+  .hero-benchmark-arrow { margin-left: auto; }
+}
 .home-benchmarks { order: 1; padding: 24px 0; }
 .home-benchmarks-card { padding: 40px; border-radius: 28px; background: #f3f8fb; border: 1px solid #dce7ef; }
 .home-benchmarks-heading { display: flex; align-items: center; justify-content: space-between; gap: 28px; margin-bottom: 28px; }
