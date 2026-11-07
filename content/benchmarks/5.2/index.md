@@ -1,6 +1,6 @@
 ---
 title: "Fluent Bit 5.2 performance benchmarks"
-description: "Explore Fluent Bit 5.2 throughput, CPU, memory, and buffering measurements, with methods and downloadable results."
+description: "Explore Fluent Bit v5.2 throughput, CPU, memory, and buffering measurements under documented workload conditions."
 headerTheme: light
 image: "/images/blog/1701353456-general-fluent-bit-preview-card.png"
 ---
@@ -30,7 +30,7 @@ Each case uses 100 logs/request, 16 persistent HTTP clients, 320,000 warmup reco
 
 Fluent Bit uses four HTTP workers, a 0.5s flush interval, and null output. Collector Contrib 0.163 uses an instrumented counting null exporter, one sending-queue consumer, and 8,192-record batching. Filesystem tests use Fluent Bit filesystem buffering and Collector `file_storage`; their persistence semantics are not equivalent.
 
-Throughput includes sending and final drain. Fluent Bit completion counters update about once per second. Clients retry refusals, and every run completes all 30M records. Latency is the HTTP batch round trip, not per-record delivery latency. Build revisions and full configurations are linked below.
+Throughput includes sending and final drain. Fluent Bit completion counters update about once per second. Clients retry refusals, and every run completes all 30M records. Latency is the HTTP batch round trip, not per-record delivery latency. Results depend on the tested workload, buffering configuration, and hardware.
 
 </details>
 </section>
@@ -67,7 +67,7 @@ Compatible content modifier chains combine their work into one decode/edit/encod
 {{< benchmark-results "fusion" >}}
 {{< benchmark-table "fusion" >}}
 
-The baseline is an earlier 5.2 revision, not 5.1. These percentages must not be added to the OTLP gains. Compatible plain-body insert, upsert, delete, and rename chains benefit; grouped OTLP records, conditions, and unsupported chains take other paths. The CSV includes all 24 final-confirmation and exploratory rows, identified by cohort.
+The baseline is an earlier 5.2 revision, not 5.1. These percentages must not be added to the OTLP gains. Compatible plain-body insert, upsert, delete, and rename chains benefit; grouped OTLP records, conditions, and unsupported chains take other paths.
 </section>
 
 <section class="benchmark-section" aria-labelledby="storage">
@@ -95,23 +95,13 @@ Tests use ext4/NVMe, 4 KiB pages, one server CPU, and a shared host. Checksum-en
 
 Compact CFL arenas reduce reserved memory per decoded record by **27–31%**, with **23–26% less CPU time** in the measured record-building workloads. These are record-graph measurements, not total process RSS.
 
-<details>
+<details open>
 <summary>Record-building CPU and memory measurements</summary>
 
 {{< benchmark-results "cfl" >}}
 {{< benchmark-table "cfl" >}}
 
-These microbenchmark gains are not additive with pipeline results. The original source also includes workloads with slightly higher reserved memory.
+These microbenchmark gains are not additive with pipeline results. Memory improvements vary by record shape.
 
 </details>
-</section>
-
-<section class="benchmark-section" aria-labelledby="sources">
-
-## Methods, sources, and downloadable data {#sources}
-
-Each experiment answers a different question. There is no common published workload comparing FTS, 5.1 content modifier, and Collector together. Cross-experiment percentages cannot be combined into a single speedup. Results describe measured performance under the stated conditions, not a guaranteed production rate.
-
-{{< benchmark-sources >}}
-{{< benchmark-downloads >}}
 </section>

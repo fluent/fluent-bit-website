@@ -1,6 +1,6 @@
 ---
 title: "Fluent Bit benchmarks"
-description: "Explore workload-specific Fluent Bit performance measurements, methods, and downloadable data."
+description: "Explore workload-specific Fluent Bit performance measurements and comparison conditions."
 headerTheme: light
 ---
 

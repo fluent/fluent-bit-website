@@ -5,7 +5,7 @@
     <h1>{{ .Title }}</h1>
     {{ .Content }}
     {{ range .Pages }}
-      <article class="benchmark-hub-card"><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2><p>{{ .Description }}</p><p>Workload-specific results · Methods and data included</p><a class="btn btn-gradient" href="{{ .RelPermalink }}">Explore the benchmarks</a></article>
+      <article class="benchmark-hub-card"><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2><p>{{ .Description }}</p><p>Workload-specific results · Comparison conditions included</p><a class="btn btn-gradient" href="{{ .RelPermalink }}">Explore the benchmarks</a></article>
     {{ end }}
   </main>
 {{ end }}

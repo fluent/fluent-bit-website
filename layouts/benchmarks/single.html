@@ -5,12 +5,12 @@
       <header class="benchmark-hero">
         <p class="benchmark-eyebrow">Fluent Bit 5.2 / performance benchmarks</p>
         <h1>Measured performance.<br><span class="text-gradient">See the complete picture.</span></h1>
-        <p class="benchmark-lead">{{ .Description }}</p>
-        <p class="benchmark-status">Workload-specific results from the benchmark builds documented below. Compare throughput, CPU, and memory together.</p>
+        <p class="benchmark-lead">{{ .Description | replaceRE `(Fluent Bit v?[0-9]+\.[0-9]+)` "**$1**" | markdownify }}</p>
+        <p class="benchmark-status">Workload-specific results under the conditions described with each comparison. Compare throughput, CPU, and memory together.</p>
         {{ partial "benchmarks/highlights.html" . }}
       </header>
       <nav class="benchmark-nav" aria-label="Benchmark sections">
-        <a href="#otlp">OTLP logs</a><a href="#fts">FTS scripting</a><a href="#fusion">Content modifier</a><a href="#storage">Buffering</a><a href="#libraries">Record memory</a><a href="#sources">Methods &amp; data</a>
+        <a href="#otlp">OTLP logs</a><a href="#fts">FTS scripting</a><a href="#fusion">Content modifier</a><a href="#storage">Buffering</a><a href="#libraries">Record memory</a>
       </nav>
       <div class="benchmark-content">{{ .Content }}</div>
     </div>
