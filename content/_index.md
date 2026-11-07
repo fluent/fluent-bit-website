@@ -17,6 +17,8 @@ hero:
       btnUrl: "/how-it-works/"
       secondary: true
   noteText: Read release notes ↗
+  image: "/images/hero.svg"
+  imageAlt: "Fluent Bit connects telemetry sources to destinations including OpenTelemetry, Kafka, Splunk, and Amazon S3."
 howitworks:
   enabled: true
   position: 5
