@@ -1,7 +1,7 @@
 # Verified against fluent/fluent-bit 59a3ecea4867b85d0a6ec7e0eb51d34877683851 on 2026-11-05.
 name = "FTS — Fluent Typed Scripting"
-headline = "Shape your telemetry with Lua."
-description = "Write policies for logs, metrics, and traces directly in Fluent Bit, with typed access to telemetry values and OpenTelemetry context."
+headline = "Shape your telemetry with FTS."
+description = "FTS is Fluent Bit’s native processor for typed telemetry policies across logs, metrics, and traces, using Lua to express your rules."
 quickstart = "https://github.com/fluent/fluent-bit/blob/master/plugins/processor_fts/README.md#quick-start"
 reference = "https://github.com/fluent/fluent-bit/blob/master/plugins/processor_fts/README.md"
 examples = "https://github.com/fluent/fluent-bit/blob/master/plugins/processor_fts/README.md#logs"
