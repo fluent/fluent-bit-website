@@ -24,7 +24,7 @@
   }
   .home-hero{
     h1{
-      font-size: 72px;
+      font-size: 56px;
     }
 
     .hero-action-row{
@@ -398,7 +398,7 @@
     }
     .home-hero{
       margin-top: -100px;
-      padding: 124px 0 52px;
+      padding: 124px 0 24px;
 
       .hero-tag{
         margin-bottom: 14px;
@@ -424,7 +424,8 @@
         gap: 10px;
       }
 
-      .btn-gradient{
+      .btn-gradient,
+      .hero-btn-secondary{
         width: 100%;
         min-width: 0;
         height: 52px;

@@ -9,12 +9,11 @@
                         <p data-aos="zoom-out" class="text-gradient text-left text-md-center hero-tag" data-aos-delay="100">{{$data.tag | safeHTML}}</p>
                         <h1 data-aos="zoom-in" data-aos-delay="100" class="text-left text-md-center mx-auto">{{$data.heading | markdownify }}</h1>
                         <p class="sub-heading text-left text-md-center" data-aos="zoom-in-up">{{$data.subHeading | markdownify}}</p>
-                        <p class="hero-benchmark-link"><a href="/benchmarks/5.2/">Explore the Fluent Bit 5.2 benchmarks ↗</a></p>
                         <div class="hero-action-row">
                             <div class="d-flex release-btn">
                                 {{ range $data.buttons }}
                                 <p class="mr-md-3">
-                                    <a href="{{ .btnUrl | safeHTML }}" class="btn btn-gradient" data-aos="zoom-in">{{ .btnText | safeHTML }}</a>
+                                    <a href="{{ .btnUrl | safeHTML }}" class="btn {{ if .secondary }}hero-btn-secondary{{ else }}btn-gradient{{ end }}" data-aos="zoom-in">{{ .btnText | safeHTML }}</a>
                                 </p>
                                 {{ end }}
                             </div>
@@ -22,11 +21,12 @@
                                 <p class="eyebrow">Latest stable release</p>
                                 <p class="ver">
                                     <span class="version">{{.Site.Params.lastVersion | safeHTML}}</span>
-                                    <span class="date">Released on <strong>{{.Site.Params.releasedOn | safeHTML}}</strong></span>
+                                    {{ with .Site.Params.releasedOn }}<span class="date">Released on <strong>{{ . }}</strong></span>{{ end }}
                                     <a href="{{.Site.Params.noteUrl | safeHTML}}" class="read-link">{{$data.noteText | safeHTML}}</a>
                                 </p>
                             </div>
                         </div>
+                        <p class="hero-benchmark-link"><a href="/benchmarks/5.2/">See Fluent Bit 5.2 performance benchmarks ↗</a></p>
                     </div>
                 </div>
                 {{if $data.image}}

@@ -21,7 +21,7 @@
                             {{else}}
                             <a href="{{ .buttonUrl | safeHTML}}" class="btn btn-gradient">{{ .button | safeHTML}}</a>
                             <p class="last-ver">Last Version {{$lastVer }}  </p>
-                            <p class="ver mt-1">Released On <strong>{{$releasedOn}}</strong></p>   
+                            {{ with $releasedOn }}<p class="ver mt-1">Released On <strong>{{ . }}</strong></p>{{ end }}
 
                             {{end}}
                         </div>
@@ -79,7 +79,7 @@
                     {{if eq .linkHeading "Download"}}
                     <div class="ml-3">                            
                         <p class="last-ver text-right">Last Version {{$lastVer }}  </p>
-                        <p class="ver  mt-1 mb-0">Released On <strong>{{$releasedOn}}</strong></p>  
+                        {{ with $releasedOn }}<p class="ver mt-1 mb-0">Released On <strong>{{ . }}</strong></p>{{ end }}
                     </div> 
                         <a href="{{ .buttonUrl | safeHTML}}" target="_blank" class="btn btn-gradient">{{ .button | safeHTML}}</a>
                     {{end}}
