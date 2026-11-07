@@ -4,7 +4,7 @@ description: "[Fluent Bit v5.1](https://github.com/fluent/fluent-bit/tree/master
 specific minor feature requests, we do quick releases upon demand. Below is a list of the notes for each version."
 url: "/announcements/v5.1/"
 herobg: "/images/hero@2x.jpg"
-latestVer: true
+latestVer: false
 releaseNotes:
   heading: "Release Notes v5.1.5"
   version: "v5.1.5"

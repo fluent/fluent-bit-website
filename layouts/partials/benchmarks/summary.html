@@ -1,0 +1,13 @@
+{{ $d := partial "benchmarks/data.html" . }}
+{{ $modified := where (where $d.otlp "storage" "memory") "workload" "JSON, modified" }}
+{{ $candidate := index (where $modified "system" "Fluent Bit 5.2") 0 }}
+{{ $baseline := index (where $modified "system" "Fluent Bit 5.1") 0 }}
+{{ $collector := index (where $modified "system" "OpenTelemetry Collector 0.163") 0 }}
+{{ $lo := 100.0 }}
+{{ $hi := 0.0 }}
+{{ range $d.fts }}
+  {{ $reduction := mul 100 (sub 1 (div .fts_cpu_seconds .lua_51_cpu_seconds)) }}
+  {{ $lo = math.Min $lo $reduction }}
+  {{ $hi = math.Max $hi $reduction }}
+{{ end }}
+{{ return (dict "rate" (div $candidate.records_per_second 1000000.0) "ratio" (div $candidate.records_per_second $baseline.records_per_second) "collector_ratio" (div $candidate.records_per_second $collector.records_per_second) "fts_low" (math.Floor $lo) "fts_high" (math.Ceil $hi)) }}

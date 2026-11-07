@@ -1,0 +1,7 @@
+{{ $summary := partial "benchmarks/summary.html" . }}
+<div class="benchmark-highlights">
+  <a href="#otlp"><strong>{{ printf "%.1f" $summary.ratio }}×</strong><span>JSON transformation throughput versus Fluent Bit 5.1, with memory buffering.</span></a>
+  <a href="#otlp"><strong>{{ printf "%.1f" $summary.collector_ratio }}×</strong><span>JSON transformation throughput versus Collector 0.163 in the same benchmark.</span></a>
+  <a href="#fts"><strong>{{ printf "%.0f–%.0f" $summary.fts_low $summary.fts_high }}%</strong><span>Less CPU for FTS than equivalent Lua log policies on Fluent Bit 5.1.0.</span></a>
+</div>
+<p class="benchmark-note">Highlights describe specific measured workloads. Results depend on the pipeline, buffering, and hardware. CPU and memory tradeoffs are included below.</p>

@@ -1,0 +1,59 @@
+# Verified against fluent/fluent-bit 59a3ecea4867b85d0a6ec7e0eb51d34877683851 on 2026-11-05.
+name = "FTS — Fluent Typed Scripting"
+headline = "Shape your telemetry with FTS."
+description = "FTS is Fluent Bit’s native processor for typed telemetry policies across logs, metrics, and traces, using Lua to express your rules."
+quickstart = "https://github.com/fluent/fluent-bit/blob/master/plugins/processor_fts/README.md#quick-start"
+reference = "https://github.com/fluent/fluent-bit/blob/master/plugins/processor_fts/README.md"
+examples = "https://github.com/fluent/fluent-bit/blob/master/plugins/processor_fts/README.md#logs"
+status = "Fluent Bit 5.2"
+availability = "FTS is included in Fluent Bit 5.2. Use a build with the FTS processor enabled, and check your binary before running the quickstart."
+
+[demo]
+input = '{"id":9007199254740993,"password":"example-secret"}'
+output = '{"id":9007199254740993,"password":"[REDACTED]"}'
+policy = '''local fb = require("fluentbit")
+
+function process(log)
+  fb.redact(log.body, {"password"})
+end'''
+
+[[signals]]
+id = "logs"
+name = "Logs"
+title = "Clean up application logs"
+text = "Read a JSON message and hide its password and authorization fields."
+note = "This example drops records when the message is missing or cannot be read as a JSON object."
+code = '''local fb = require("fluentbit")
+
+function process(log)
+  if not fb.unpack_json(log, "message") then
+    return fb.DROP
+  end
+  fb.redact(log.body, {"password", "authorization"})
+end'''
+[[signals]]
+id = "metrics"
+name = "Metrics"
+title = "Keep the metric labels you need"
+text = "Combine matching request counts by route and status."
+note = "Only points in the same metric family with matching time windows are combined."
+code = '''local fb = require("fluentbit")
+
+function process(metric)
+  if metric.name == "http.server.requests" then
+    fb.aggregate_metric(metric,
+      {"http.route", "http.response.status_code"}, "sum")
+  end
+end'''
+[[signals]]
+id = "traces"
+name = "Traces"
+title = "Hide sensitive span fields"
+text = "Replace password and authorization values in span attributes."
+note = "Trace IDs and parent relationships stay unchanged. Other fields need their own redaction rules."
+code = '''local fb = require("fluentbit")
+
+function process(span)
+  fb.redact(span.attributes,
+    {"password", "authorization"})
+end'''

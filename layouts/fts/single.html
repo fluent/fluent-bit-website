@@ -1,0 +1,34 @@
+{{ define "main" }}
+  {{ partial "header.html" . }}
+  <main class="fts-page">
+    <section class="fts-hero" aria-labelledby="fts-title">
+      <div class="container">
+        <div class="fts-hero-grid">
+          <div class="fts-hero-copy">
+            <p class="fts-eyebrow">{{ site.Data.fts.name }}</p>
+            <h1 id="fts-title">Shape your telemetry <span class="text-gradient">with FTS.</span></h1>
+            <p class="fts-intro">{{ .Params.intro }}</p>
+            <div class="fts-actions">
+              <a class="btn btn-gradient" href="{{ site.Data.fts.quickstart }}">Get started with FTS</a>
+              <a class="fts-text-link" href="#signals">See more examples <span aria-hidden="true">↗</span></a>
+            </div>
+            <p class="fts-preview"><span>{{ site.Data.fts.status }}</span> Logs · Metrics · Traces</p>
+          </div>
+          {{ partial "fts-demo.html" . }}
+        </div>
+      </div>
+    </section>
+    <nav class="fts-page-nav" aria-label="On this page">
+      <div class="container">
+        <a href="#lua-comparison">FTS vs Lua filter</a>
+        <a href="#use-cases">Use cases</a>
+        <a href="#typed-values">What “typed” means</a>
+        <a href="#signals">More examples</a>
+        <a href="#get-started">Get started</a>
+      </div>
+    </nav>
+    <div class="fts-content container">{{ .Content }}</div>
+  </main>
+  {{ $script := resources.Get "js/fts.js" | minify | fingerprint }}
+  <script src="{{ $script.RelPermalink }}" defer></script>
+{{ end }}

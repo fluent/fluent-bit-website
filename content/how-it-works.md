@@ -74,3 +74,10 @@ history:
 ## Overview
 
 It has been designed as a lightweight solution with high performance in mind. From a design perspective, it's fully asynchronous (event-driven) and take the most of the operating systems API for performance and reliability.
+
+
+## Shape telemetry with Lua
+
+[FTS — Fluent Typed Scripting](/fts/) adds programmable policies to input and output processors. Work with typed log values, metric families, spans, and OpenTelemetry context to redact fields, normalize data, and reduce noise before forwarding it.
+
+FTS is included in Fluent Bit 5.2. [See a policy in action and get started](/fts/).

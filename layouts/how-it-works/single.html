@@ -17,6 +17,10 @@
                 {{- partial "how-its-work-boxes.html" . -}}
             </div>
 
+            <div class="page-article fts-context">
+              {{ .Content }}
+            </div>
+
             {{if .Params.history}}
                 {{- partial "history.html" . -}}
             {{end}}

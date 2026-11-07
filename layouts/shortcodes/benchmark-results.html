@@ -1,0 +1,97 @@
+{{ $d := partial "benchmarks/data.html" . }}
+{{ $scope := .Get 0 }}
+{{ $views := slice }}
+{{ if eq $scope "otlp" }}
+  {{ $views = slice
+    (dict "key" "records_per_second" "label" "Completed records / second" "unit" "million records / s" "factor" 1000000.0 "digits" 3)
+    (dict "key" "cpu_seconds_per_million" "label" "CPU seconds / million records" "unit" "CPU s / million records" "factor" 1.0 "digits" 2)
+    (dict "key" "steady_rss_mib" "label" "Steady RSS" "unit" "MiB" "factor" 1.0 "digits" 0)
+    (dict "key" "peak_rss_mib" "label" "Peak RSS" "unit" "MiB" "factor" 1.0 "digits" 0)
+    (dict "key" "latency_p50_us" "label" "HTTP batch latency p50" "unit" "µs / HTTP request" "factor" 1.0 "digits" 0)
+    (dict "key" "latency_p99_us" "label" "HTTP batch latency p99" "unit" "µs / HTTP request" "factor" 1.0 "digits" 0) }}
+{{ else if eq $scope "fts" }}
+  {{ $views = slice (dict "key" "cpu" "label" "CPU seconds / run" "unit" "CPU seconds / run" "digits" 2) (dict "key" "rss" "label" "Peak RSS" "unit" "MB, as published" "digits" 1) }}
+{{ else if eq $scope "storage" }}
+  {{ $views = slice (dict "key" "disk_mib" "label" "Allocated disk" "unit" "MiB" "digits" 2) (dict "key" "cpu_seconds" "label" "CPU cost" "unit" "CPU seconds" "digits" 3) (dict "key" "ingestion_mib_per_second" "label" "Ingestion rate" "unit" "MiB / second" "digits" 2) }}
+{{ else if eq $scope "cfl" }}
+  {{ $views = slice (dict "key" "ns_per_record" "label" "CPU time" "unit" "ns / record" "digits" 1) (dict "key" "reserved_bytes_per_record" "label" "Reserved record memory" "unit" "bytes / record" "digits" 0) }}
+{{ else if eq $scope "fusion" }}
+  {{ $views = slice (dict "key" "cpu" "label" "CPU cost" "unit" "CPU s / million records" "digits" 4) }}
+{{ end }}
+<div data-benchmark-group="{{ $scope }}">
+  {{ if gt (len $views) 1 }}
+    <label class="benchmark-control" hidden>Compare
+      <select data-benchmark-switch aria-label="{{ $scope }} metric">
+        {{ range $views }}<option value="{{ .key }}">{{ .label }}</option>{{ end }}
+      </select>
+    </label>
+    <noscript><p class="benchmark-note">All metrics are available in the results table below.</p></noscript>
+  {{ end }}
+  {{ range $i, $view := $views }}
+    <div class="benchmark-panel" data-benchmark-metric="{{ .key }}" {{ if $i }}hidden{{ end }}>
+      {{ if eq $scope "otlp" }}
+        {{ $ceiling := 0.0 }}
+        {{ range $d.otlp }}{{ $ceiling = math.Max $ceiling (div (index . $view.key) $view.factor) }}{{ end }}
+        <div class="benchmark-chart-grid">
+        {{ range $storage := slice "memory" "filesystem" }}
+          {{ $groups := slice }}
+          {{ range $workload := slice "JSON, modified" "Protobuf, modified" "JSON, ingest" "Protobuf, ingest" }}
+            {{ $rows := slice }}
+            {{ range $j, $name := slice "Fluent Bit 5.2" "Fluent Bit 5.1" "OpenTelemetry Collector 0.163" }}
+              {{ $match := index (where (where (where $d.otlp "storage" $storage) "workload" $workload) "system" $name) 0 }}
+              {{ $rows = $rows | append (dict "name" $name "short" (index (slice "5.2" "5.1" "OTel") $j) "color" (index (slice "#2372b8" "#607b97" "#b75c24") $j) "value" (div (index $match $view.key) $view.factor)) }}
+            {{ end }}
+            {{ $label := replace (replace $workload ", modified" " · add an attribute") ", ingest" " · ingest only" }}
+            {{ $groups = $groups | append (dict "label" $label "rows" $rows) }}
+          {{ end }}
+          {{ $note := "Lower is better. Median of five runs; 30M completed records/run. HTTP latency measures batch requests, not record delivery. Both buffering panels use the same scale." }}
+          {{ if eq $view.key "records_per_second" }}{{ $note = "Higher is better. Median of five runs; 30M completed records/run, including sending and final drain. Both buffering panels use the same scale." }}{{ end }}
+          {{ partial "benchmarks/chart.html" (dict "title" (printf "%s buffering" (title $storage)) "unit" $view.unit "digits" $view.digits "groups" $groups "ceiling" $ceiling "note" $note) }}
+        {{ end }}
+        </div>
+      {{ else }}
+        {{ $groups := slice }}
+        {{ $series := slice }}
+        {{ $records := slice }}
+        {{ $note := "" }}
+        {{ $chartTitle := "" }}
+        {{ if eq $scope "fts" }}
+          {{ $chartTitle = "Equivalent log policies" }}
+          {{ $records = $d.fts }}
+          {{ $note = "Lower is better. Published median user + system CPU and peak RSS. Tail → null; 1M flat records or 300k Kubernetes records per run. Compare systems within each policy; record budgets differ between policies. The repeat count is not stated." }}
+          {{ if eq $view.key "cpu" }}
+            {{ $series = slice (dict "key" "fts_cpu_seconds" "name" "Fluent Bit 5.2 · FTS" "short" "5.2 FTS" "color" "#2372b8") (dict "key" "lua_branch_cpu_seconds" "name" "Fluent Bit 5.2 · Lua" "short" "5.2 Lua" "color" "#7866a6") (dict "key" "lua_51_cpu_seconds" "name" "Fluent Bit 5.1.0 · Lua" "short" "5.1 Lua" "color" "#607b97") }}
+          {{ else }}
+            {{ $series = slice (dict "key" "fts_rss_mb" "name" "Fluent Bit 5.2 · FTS" "short" "5.2 FTS" "color" "#2372b8") (dict "key" "lua_51_rss_mb" "name" "Fluent Bit 5.1.0 · Lua" "short" "5.1 Lua" "color" "#607b97") }}
+          {{ end }}
+        {{ else if eq $scope "storage" }}
+          {{ $chartTitle = "Filesystem allocation and ingestion" }}
+          {{ $records = $d.chunks }}
+            {{ $series = slice (dict "key" (printf "after_%s" $view.key) "name" "Fluent Bit 5.2 · optimized allocation" "short" "After" "color" "#2372b8") (dict "key" (printf "before_%s" $view.key) "name" "Before allocation integration" "short" "Before" "color" "#607b97") }}
+          {{ $note = "Three measured repeats after warmup. Both builds use ChunkIO 1.5.5. This isolates allocation integration, not a 5.1-versus-5.2 comparison." }}
+        {{ else if eq $scope "cfl" }}
+          {{ $chartTitle = "Decoded-record construction" }}
+          {{ $records = $d.cfl }}
+            {{ $series = slice (dict "key" (printf "after_%s" $view.key) "name" "Compact record arena" "short" "Compact" "color" "#2372b8") (dict "key" (printf "before_%s" $view.key) "name" "Previous record arena" "short" "Previous" "color" "#607b97") }}
+          {{ $note = "Lower is better. Release x86_64; best of five runs. Reserved arena bytes are not process RSS. These gains are not additive with pipeline results." }}
+        {{ else if eq $scope "fusion" }}
+          {{ $chartTitle = "CPU cost of a content modifier chain" }}
+          {{ $records = where $d.fusion "cohort" "Final confirmation" }}
+            {{ $series = slice (dict "key" "candidate_cpu_s_per_million" "name" "Fluent Bit 5.2 · chain fusion" "short" "After" "color" "#2372b8") (dict "key" "baseline_cpu_s_per_million" "name" "Before chain fusion" "short" "Before" "color" "#607b97") }}
+          {{ $note = "Lower is better. Five paired runs/case; 800k records for 12 fields, 200k for 128 fields. Both builds are 5.2 revisions." }}
+        {{ end }}
+        {{ if eq $scope "storage" }}
+          {{ $note = printf "%s %s" (cond (eq $view.key "ingestion_mib_per_second") "Higher is better." "Lower is better.") $note }}
+        {{ end }}
+        {{ range $record := $records }}
+          {{ $rows := slice }}
+          {{ range $series }}{{ $rows = $rows | append (merge . (dict "value" (index $record .key))) }}{{ end }}
+          {{ $label := $record.workload }}
+          {{ if eq $scope "fusion" }}{{ $label = printf "%.0f fields · %s" $record.fields (cond (hasSuffix $record.case "-6") "6 upserts" "no edits") }}{{ end }}
+          {{ $groups = $groups | append (dict "label" $label "rows" $rows) }}
+        {{ end }}
+        {{ partial "benchmarks/chart.html" (dict "title" $chartTitle "unit" $view.unit "digits" $view.digits "groups" $groups "note" $note) }}
+      {{ end }}
+    </div>
+  {{ end }}
+</div>

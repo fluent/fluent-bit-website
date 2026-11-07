@@ -1,0 +1,2 @@
+{{ $page := site.GetPage "/benchmarks/5.2" }}
+{{ return ($page.Resources.Get "results.json" | transform.Unmarshal) }}

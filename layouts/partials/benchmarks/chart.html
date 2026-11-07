@@ -1,0 +1,36 @@
+{{ $title := .title }}
+{{ $unit := .unit }}
+{{ $digits := .digits }}
+{{ $max := 0.0 }}
+{{ range .groups }}{{ range .rows }}{{ $max = math.Max $max .value }}{{ end }}{{ end }}
+{{ with .ceiling }}{{ $max = . }}{{ end }}
+{{ $scale := mul (math.Max 1.0 $max) 1.13 }}
+<figure class="benchmark-chart">
+  <figcaption><h3>{{ $title }}</h3><span>{{ $unit }}</span></figcaption>
+  <p class="benchmark-note">{{ .note }} Bars start at zero.</p>
+  <div class="benchmark-legend">
+    {{ range (index .groups 0).rows }}<span><i style="background: {{ .color }}" aria-hidden="true"></i>{{ .name }}</span>{{ end }}
+  </div>
+  {{ range .groups }}
+    <div class="benchmark-case">
+      <h4>{{ .label }}</h4>
+      {{ $height := add 18 (mul (len .rows) 36) }}
+      <svg viewBox="0 0 640 {{ $height }}" role="img" aria-label="{{ .label }}: {{ $unit }}">
+        <title>{{ .label }} — {{ $title }}</title>
+        {{ range seq 0 4 }}
+          {{ $x := add 120 (mul . 105) }}
+          <line x1="{{ $x }}" x2="{{ $x }}" y1="0" y2="{{ $height }}" class="benchmark-gridline" />
+        {{ end }}
+        {{ range $i, $row := .rows }}
+          {{ $y := add 8 (mul $i 36) }}
+          {{ $bar := mul 420 (div $row.value $scale) }}
+          <text x="0" y="{{ add $y 17 }}" class="benchmark-system">{{ $row.short }}</text>
+          <rect x="120" y="{{ $y }}" width="{{ printf "%.3f" $bar }}" height="20" rx="3" fill="{{ $row.color }}">
+            <title>{{ $row.name }}: {{ lang.FormatNumber $digits $row.value }} {{ $unit }}</title>
+          </rect>
+          <text x="{{ printf "%.3f" (add 128 $bar) }}" y="{{ add $y 17 }}" class="benchmark-value">{{ lang.FormatNumber $digits $row.value }}</text>
+        {{ end }}
+      </svg>
+    </div>
+  {{ end }}
+</figure>

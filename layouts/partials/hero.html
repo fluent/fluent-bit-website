@@ -1,43 +1,48 @@
 {{ if .Params.hero.enabled }}
-{{$data := .Params.hero }}
-<section class="hero home-hero" style="order: {{$data.position}};" >
-    <div class="container">
-        <div class="hero-shell">
-            <div class="row align-items-center">
-                <div class="col-12 text-left text-md-center">
-                    <div class="hero-copy">
-                        <p data-aos="zoom-out" class="text-gradient text-left text-md-center hero-tag" data-aos-delay="100">{{$data.tag | safeHTML}}</p>
-                        <h1 data-aos="zoom-in" data-aos-delay="100" class="text-left text-md-center mx-auto">{{$data.heading | markdownify }}</h1>
-                        <p class="sub-heading text-left text-md-center" data-aos="zoom-in-up">{{$data.subHeading | markdownify}}</p>
-                        <div class="hero-action-row">
-                            <div class="d-flex release-btn">
-                                {{ range $data.buttons }}
-                                <p class="mr-md-3">
-                                    <a href="{{ .btnUrl | safeHTML }}" class="btn btn-gradient" data-aos="zoom-in">{{ .btnText | safeHTML }}</a>
-                                </p>
-                                {{ end }}
-                            </div>
-                            <div class="hero-release-card" data-aos="fade-left">
-                                <p class="eyebrow">Latest stable release</p>
-                                <p class="ver">
-                                    <span class="version">{{.Site.Params.lastVersion | safeHTML}}</span>
-                                    <span class="date">Released on <strong>{{.Site.Params.releasedOn | safeHTML}}</strong></span>
-                                    <a href="{{.Site.Params.noteUrl | safeHTML}}" class="read-link">{{$data.noteText | safeHTML}}</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{if $data.image}}
-                    <div class="col-12 text-center hero-image">
-                        <div class="hero-visual-frame" data-aos="zoom-in-up">
-                            <img src="{{$data.image | safeHTML}}" alt="{{$data.heading | safeHTML}}" class="mx-auto d-none d-md-block">
-                            <img src="{{$data.mobileImage | safeHTML}}" alt="{{$data.heading | safeHTML}}" class="d-sm-block d-md-none">
-                        </div>
-                    </div>
-                {{end}}
-            </div>
+{{ $data := .Params.hero }}
+<section class="hero home-hero" style="order: {{ $data.position }};">
+  <div class="container">
+    <div class="hero-shell hero-pipeline-layout">
+      <div class="hero-copy">
+        <p class="text-gradient hero-tag">{{ $data.tag }}</p>
+        <h1>{{ $data.heading | markdownify }}</h1>
+        <p class="sub-heading">{{ $data.subHeading | markdownify }}</p>
+      </div>
+      {{ with $data.image }}
+        <div class="hero-pipeline-image">
+          <img src="{{ . }}" alt="{{ $data.imageAlt }}" width="1046" height="671" fetchpriority="high">
         </div>
+      {{ end }}
+      <div class="hero-actions">
+        <div class="hero-action-row">
+          <div class="release-btn">
+            {{ range $data.buttons }}
+              <p><a href="{{ .btnUrl }}" class="btn {{ if .secondary }}hero-btn-secondary{{ else }}btn-gradient{{ end }}">{{ .btnText }}</a></p>
+            {{ end }}
+          </div>
+          <div class="hero-release-card">
+            <p class="eyebrow">Latest stable release</p>
+            <p class="ver">
+              <span class="version">{{ .Site.Params.lastVersion }}</span>
+              {{ with .Site.Params.releasedOn }}<span class="date">Released on <strong>{{ . }}</strong></span>{{ end }}
+              <a href="{{ .Site.Params.noteUrl }}" class="read-link">{{ $data.noteText }}</a>
+            </p>
+          </div>
+        </div>
+        <p class="hero-benchmark-link">
+          <a href="/benchmarks/5.2/">
+            <svg class="hero-benchmark-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+              <path d="M5 22V16M14 22V11M23 22V5" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+            <span class="hero-benchmark-copy">
+              <strong>Explore the Fluent Bit 5.2 benchmarks</strong>
+              <span>Throughput, CPU, memory &amp; buffering</span>
+            </span>
+            <span class="hero-benchmark-arrow" aria-hidden="true">→</span>
+          </a>
+        </p>
+      </div>
     </div>
+  </div>
 </section>
 {{ end }}

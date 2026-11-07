@@ -1,0 +1,6 @@
+{{ $summary := partial "benchmarks/summary.html" . }}
+<aside class="benchmark-callout" aria-label="FTS benchmark results">
+  <h3>Measured scripting performance</h3>
+  <p>In nine log-policy benchmarks, FTS on Fluent Bit 5.2 used <strong>{{ printf "%.0f–%.0f" $summary.fts_low $summary.fts_high }}% less CPU</strong> than equivalent Lua policies on 5.1.0.</p>
+  <a href="/benchmarks/5.2/#fts">See CPU and memory results ↗</a>
+</aside>
