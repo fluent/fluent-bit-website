@@ -1,0 +1,20 @@
+{{ define "main" }}
+  {{ partial "header.html" . }}
+  <main class="benchmark-page">
+    <div class="container">
+      <header class="benchmark-hero">
+        <p class="benchmark-eyebrow">Fluent Bit 5.2 / performance benchmarks</p>
+        <h1>Measured performance.<br><span class="text-gradient">See the complete picture.</span></h1>
+        <p class="benchmark-lead">{{ .Description }}</p>
+        <p class="benchmark-status">Workload-specific results from the benchmark builds documented below. Compare throughput, CPU, and memory together.</p>
+        {{ partial "benchmarks/highlights.html" . }}
+      </header>
+      <nav class="benchmark-nav" aria-label="Benchmark sections">
+        <a href="#otlp">OTLP logs</a><a href="#fts">FTS scripting</a><a href="#fusion">Content modifier</a><a href="#storage">Buffering</a><a href="#libraries">Record memory</a><a href="#sources">Methods &amp; data</a>
+      </nav>
+      <div class="benchmark-content">{{ .Content }}</div>
+    </div>
+  </main>
+  {{ $script := resources.Get "js/benchmarks.js" | minify | fingerprint }}
+  <script src="{{ $script.RelPermalink }}" defer></script>
+{{ end }}

@@ -1,0 +1,12 @@
+{{ $lines := slice }}
+{{ $header := slice }}
+{{ range .columns }}{{ $header = $header | append (printf "\"%s\"" .) }}{{ end }}
+{{ $lines = $lines | append (delimit $header ",") }}
+{{ range .rows }}
+  {{ $row := . }}
+  {{ $cells := slice }}
+  {{ range $.columns }}{{ $value := printf "%v" (index $row .) }}{{ $cells = $cells | append (printf "\"%s\"" (replace $value "\"" "\"\"")) }}{{ end }}
+  {{ $lines = $lines | append (delimit $cells ",") }}
+{{ end }}
+{{ $csv := resources.FromString .target (printf "%s\n" (delimit $lines "\n")) }}
+{{ return $csv.RelPermalink }}

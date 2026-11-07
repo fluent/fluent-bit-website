@@ -80,4 +80,4 @@ It has been designed as a lightweight solution with high performance in mind. Fr
 
 [FTS — Fluent Typed Scripting](/fts/) adds programmable policies to input and output processors. Work with typed log values, metric families, spans, and OpenTelemetry context to redact fields, normalize data, and reduce noise before forwarding it.
 
-FTS is a development preview in the 5.2.0 source and has not shipped in a stable release. [See a policy in action and get started](/fts/).
+FTS is included in Fluent Bit 5.2. [See a policy in action and get started](/fts/).

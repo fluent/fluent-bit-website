@@ -58,19 +58,15 @@ end
 
 Span policies can edit attributes, events, and resource context. They operate on individual spans; whole-trace sampling belongs in a sampling processor.
 
+## Measured scripting performance
+
+Across nine equivalent log-policy tests, FTS on Fluent Bit 5.2 uses 18–45% less CPU than Lua on 5.1.0. The [benchmark report](/benchmarks/5.2/#fts) includes Lua on both versions, CPU and peak RSS, policy-specific memory tradeoffs, and the published measurement conditions.
+
 ## Typed values, familiar Lua
 
 “Typed” describes the telemetry values exposed to the script. Lua stays dynamically typed, and checks happen at runtime. FTS preserves untouched values such as exact 64-bit integers, binary data, nulls, maps, and arrays. Updating an environment field should not round an unrelated large integer ID.
 
 Policies use typed accessors and constructors rather than converting every value to a Lua table or number. OpenTelemetry context is available through properties such as `log.resource.attributes`; scripts do not need to decode raw metadata to reach it. OpenTelemetry properties on logs require that context to be present.
-
-## Reuse policies with packs and recipes
-
-Operators can now select reusable Lua blocks in YAML recipes. Install a reviewed pack locally, supply its parameters, and run the blocks in order. The [policy catalog]({{< fts-link "examples" >}}) includes structured redaction, successful probe reduction, Kubernetes metadata hygiene, metric dimension reduction, and stable span naming, each with a declared input contract.
-
-Authors keep policy logic in Lua and provide typed fixtures with independent expected outputs. Exported parameter schemas and Lua API declarations help people and tools inspect the contract. [The pack guide]({{< fts-link "quickstart" >}}) includes installation, a complete pipeline, expected output, and preflight validation. Packs are trusted local files; Fluent Bit does not download or auto-update them.
-
-The current development API also adds JSON helpers for unpacking a message body or decoding a selected field in place. Check the result and choose how to handle records that cannot be decoded before applying structured redaction.
 
 ## A policy inside the pipeline
 
@@ -82,10 +78,10 @@ Instruction, memory, and output limits help manage policy mistakes. The restrict
 
 FTS complements the existing Lua filter. The Lua filter remains useful for existing log scripts, Lua module access, and classic configuration. Moving a script to FTS requires adapting its callback and value access; it is not a mandatory migration.
 
-## Try the development preview
+## Try FTS with Fluent Bit 5.2
 
 {{< fts-availability >}}
 
-The current quickstart, reference, runnable packs, and authoring guides live in the official Fluent Bit source repository. Stable release notes will identify the first shipped version when it is released.
+The current Lua quickstart, reference, and signal examples live in the official Fluent Bit source repository. Stable release notes will identify the first shipped version when it is released.
 
 Explore [FTS's capabilities and signal examples](/fts/), then [get started with FTS]({{< fts-link "quickstart" >}}). Try a policy against representative data and share your feedback through [Fluent Bit's GitHub discussions](https://github.com/fluent/fluent-bit/discussions): which transformations do you need, and where could the policy API be clearer?

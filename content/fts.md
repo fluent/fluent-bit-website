@@ -38,38 +38,6 @@ Keep failures and useful context while suppressing selected successful probes. A
 </div>
 </section>
 
-<section class="fts-section" aria-labelledby="packs">
-<div class="fts-section-grid">
-<div>
-<p class="fts-eyebrow">Reusable Lua. Configurable policies.</p>
-
-## Start with a pack. Make it your policy. {#packs}
-
-A pack contains Lua processing blocks with declared parameters and fixtures. Install the files locally, choose a block in YAML, and supply your settings. Operators can use a pack without writing Lua; authors can extend the policy without creating a native plugin.
-
-A **recipe** runs selected blocks in order. Compose core operations and pack blocks for the same signal, with parameter validation before ingestion starts.
-
-[Install and run your first pack]({{< fts-link "quickstart" >}}) · [Write or extend a pack]({{< fts-link "authoring" >}})
-
-Packs are trusted local configuration. Fluent Bit does not download or auto-update them. Pin and review the installed artifact.
-
-</div>
-<div>
-
-{{< fts-recipe >}}
-
-</div>
-</div>
-
-### Policies you can build on
-
-Each pack documents its source requirements, parameters, limits, and independent fixtures. Choose one that matches your input contract.
-
-{{< fts-packs >}}
-
-[Browse the full policy catalog]({{< fts-link "examples" >}})
-</section>
-
 <section class="fts-section" aria-labelledby="signals">
 <p class="fts-eyebrow">One runtime. Three signals.</p>
 
@@ -81,6 +49,8 @@ For custom logic, attach a Lua script to an input or output processor. Use a sep
 
 OpenTelemetry resource, scope, and attributes are available as properties. Logs must carry OpenTelemetry context to use those properties; ordinary logs can first pass through the OpenTelemetry envelope processor.
 </section>
+
+{{< benchmark-fts >}}
 
 <section class="fts-section fts-typed-section" aria-labelledby="typed-values">
 <div class="fts-section-grid">
@@ -109,43 +79,37 @@ Lua remains dynamically typed. Accessors check values at runtime, and explicit c
 <section class="fts-section" aria-labelledby="workflow">
 <p class="fts-eyebrow">From policy to a reviewed pipeline</p>
 
-## Compose. Validate. Replay. {#workflow}
+## Write. Check. Run. {#workflow}
 
 <div class="fts-workflow">
 <div>
 
-### 01 / Compose
+### 01 / Write
 
-Select a pack or write trusted Lua. Declare the signal and source schema; order parsing, normalization, and redaction before decisions that use those fields.
-
-</div>
-<div>
-
-### 02 / Validate
-
-Run `fluent-bit --dry-run -c fluent-bit.yaml` to check configuration and pack loading. Authors and tools can inspect exported parameter schemas and Lua API declarations.
+Write a Lua policy for the signal and source schema you receive. Put parsing, normalization, and redaction before decisions that use those fields.
 
 </div>
 <div>
 
-### 03 / Replay
+### 02 / Check
 
-Test representative inputs and independently specified outputs through the real Fluent Bit runtime. Typed fixtures help catch accidental changes to IDs, values, and context.
+Check your YAML configuration with `fluent-bit --dry-run -c fluent-bit.yaml`, then verify policy behavior with representative records.
+
+</div>
+<div>
+
+### 03 / Run
+
+Run your pipeline and inspect its output. Check successful transformations, unchanged control records, and policy failures, including exact IDs and OpenTelemetry context.
 
 </div>
 </div>
-
-[Authoring schemas and API declarations]({{< fts-link "schemas" >}}) · [Typed fixture runner]({{< fts-link "fixtures" >}})
 
 ### When a policy fails
 
 Item edits roll back together. By default, `error_mode: drop` removes the item; `keep` forwards its original, including any unredacted data. Redaction targets only the values and structured keys you specify; it does not discover secrets in free-form text.
 
-Instruction, memory, and output limits help contain policy mistakes. Policies and packs are trusted configuration; the restricted environment is not a security boundary.
-
-### When a policy needs state
-
-The development runtime also provides local deduplication, throttling, and bounded windows. These have specific signal and placement requirements. State is local and volatile across restart, reload, and shutdown; local decisions do not guarantee delivery. Read the [state and window contract]({{< fts-link "state" >}}) before using them.
+Instruction, memory, and output limits help contain policy mistakes. Policies are trusted configuration; the restricted environment is not a security boundary.
 
 FTS complements the existing Lua filter. Existing scripts may still need its module access, record splitting, or classic configuration. Adapting a policy to FTS requires its callback and value model, not just a configuration rename.
 </section>
@@ -155,7 +119,7 @@ FTS complements the existing Lua filter. Existing scripts may still need its mod
 
 ## Start with one policy. {#get-started}
 
-Run a complete pack example, inspect the output, then adapt its parameters to representative data from your own pipeline.
+Run the official Lua quickstart, inspect the output, then adapt the policy to representative data from your own pipeline.
 
 {{< fts-availability >}}
 

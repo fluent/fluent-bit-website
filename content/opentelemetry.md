@@ -19,7 +19,13 @@ Use Fluent Bit when you need a compact, high-performance telemetry data plane fo
 
 [FTS — Fluent Typed Scripting](/fts/) lets you write Lua policies for logs, metrics, and traces with typed access to values and OpenTelemetry resources, scopes, and attributes. Redact structured fields, normalize context, or aggregate compatible metric series inside Fluent Bit.
 
-FTS is a development preview in the 5.2.0 source, not yet part of a stable release. [Explore FTS and its official quickstart](/fts/).
+FTS is included in Fluent Bit 5.2. [Explore FTS and its official quickstart](/fts/).
+
+## Measured OTLP log performance
+
+Fluent Bit 5.2 processes 1.50 million JSON records/s in the measured OTLP/HTTP transformation with one attribute update, memory buffering, and four server CPUs. The report compares native content modifier processing with Collector OTTL, and includes CPU, RSS, batch latency, and filesystem-buffering results.
+
+[Explore the Fluent Bit 5.2 benchmarks and methods](/benchmarks/5.2/#otlp).
 
 ## OpenTelemetry
 
