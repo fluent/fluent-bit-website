@@ -1,9 +1,7 @@
 {{ $d := partial "benchmarks/data.html" . }}
 {{ $scope := .Get 0 }}
 {{ $views := slice }}
-{{ $source := "" }}
 {{ if eq $scope "otlp" }}
-  {{ $source = "https://github.com/fluent/fluent-bit/pull/12673" }}
   {{ $views = slice
     (dict "key" "records_per_second" "label" "Completed records / second" "unit" "million records / s" "factor" 1000000.0 "digits" 3)
     (dict "key" "cpu_seconds_per_million" "label" "CPU seconds / million records" "unit" "CPU s / million records" "factor" 1.0 "digits" 2)
@@ -12,16 +10,12 @@
     (dict "key" "latency_p50_us" "label" "HTTP batch latency p50" "unit" "µs / HTTP request" "factor" 1.0 "digits" 0)
     (dict "key" "latency_p99_us" "label" "HTTP batch latency p99" "unit" "µs / HTTP request" "factor" 1.0 "digits" 0) }}
 {{ else if eq $scope "fts" }}
-  {{ $source = "https://github.com/fluent/fluent-bit/pull/12589" }}
   {{ $views = slice (dict "key" "cpu" "label" "CPU seconds / run" "unit" "CPU seconds / run" "digits" 2) (dict "key" "rss" "label" "Peak RSS" "unit" "MB, as published" "digits" 1) }}
 {{ else if eq $scope "storage" }}
-  {{ $source = "https://github.com/fluent/fluent-bit/pull/12699" }}
   {{ $views = slice (dict "key" "disk_mib" "label" "Allocated disk" "unit" "MiB" "digits" 2) (dict "key" "cpu_seconds" "label" "CPU cost" "unit" "CPU seconds" "digits" 3) (dict "key" "ingestion_mib_per_second" "label" "Ingestion rate" "unit" "MiB / second" "digits" 2) }}
 {{ else if eq $scope "cfl" }}
-  {{ $source = "https://github.com/fluent/cfl/pull/98" }}
   {{ $views = slice (dict "key" "ns_per_record" "label" "CPU time" "unit" "ns / record" "digits" 1) (dict "key" "reserved_bytes_per_record" "label" "Reserved record memory" "unit" "bytes / record" "digits" 0) }}
 {{ else if eq $scope "fusion" }}
-  {{ $source = "https://github.com/fluent/fluent-bit/pull/12505" }}
   {{ $views = slice (dict "key" "cpu" "label" "CPU cost" "unit" "CPU s / million records" "digits" 4) }}
 {{ end }}
 <div data-benchmark-group="{{ $scope }}">
@@ -100,5 +94,4 @@
       {{ end }}
     </div>
   {{ end }}
-  <p class="benchmark-source"><a href="{{ $source }}">Read the original measurements ↗</a></p>
 </div>

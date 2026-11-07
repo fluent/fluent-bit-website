@@ -16,6 +16,7 @@
 .benchmark-page .benchmark-hero { margin: 0; padding: 56px 0 32px; }
 .benchmark-page .benchmark-eyebrow { color: #2372b8; font-weight: 500; font-size: 13px; letter-spacing: .05em; }
 .benchmark-page .benchmark-lead { max-width: 820px; font-size: 20px; }
+.benchmark-lead strong { color: #1c5689; font-weight: 600; }
 .benchmark-highlights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 32px 0 20px; }
 .benchmark-highlights a { display: flex; flex-direction: column; padding: 26px; border-radius: 18px; background: #edf5f8; color: #202e40; text-decoration: none; }
 .benchmark-highlights strong { color: #1c5689; font-size: 42px; line-height: 1.2; margin-bottom: 14px; }
@@ -46,14 +47,7 @@
 .benchmark-table-scroll th, .benchmark-table-scroll td { text-align: left; padding: 12px 14px; vertical-align: top; border-top: 1px solid #dce7ef; min-width: 110px; }
 .benchmark-table-scroll thead { background: #edf5f8; }
 .benchmark-table-scroll tbody th { font-weight: 500; min-width: 175px; }
-.benchmark-source { margin-top: 16px; font-size: 14px; }
-.benchmark-sources { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 28px 0; }
-.benchmark-sources article { padding: 22px; border: 1px solid #dce7ef; border-radius: 12px; }
-.benchmark-sources article h3 { font-size: 19px; }
-.benchmark-sources article p { font-size: 14px; margin-bottom: 0; }
 .benchmark-content code { overflow-wrap: anywhere; }
-.benchmark-downloads { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0; }
-.benchmark-downloads a { border: 1px solid #c7d8e5; padding: 10px 16px; border-radius: 7px; background: #fff; font-size: 14px; }
 .benchmark-hub { padding-top: 52px; padding-bottom: 72px; }
 .benchmark-hub-card { margin-top: 32px; padding: 32px; border: 1px solid #dce7ef; border-radius: 18px; }
 .benchmark-callout { padding: 30px; margin-top: 36px; border-radius: 20px; border: 1px solid #dce7ef; background: linear-gradient(120deg, #edf5fa, #f0fbf9); }
@@ -65,7 +59,7 @@
   .benchmark-page h1 { font-size: 38px; }
   .benchmark-page h2 { font-size: 28px; }
   .benchmark-page .benchmark-hero { padding-top: 32px; }
-  .benchmark-highlights, .benchmark-chart-grid, .benchmark-sources { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .benchmark-highlights, .benchmark-chart-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .benchmark-section { padding: 36px 0; }
   .benchmark-chart { padding: 18px; }
   .benchmark-system, .benchmark-value { font-size: 28px; }
