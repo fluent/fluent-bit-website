@@ -37,7 +37,7 @@
                             
                                <tr>
                                     <td><a href="{{ .RelPermalink }}">{{ .Title }}  </a></td>
-                                    <td> {{ .PublishDate.Format "Jan 2, 2006" }}   </td>
+                                    <td> {{ if not .PublishDate.IsZero }}{{ .PublishDate.Format "Jan 2, 2006" }}{{ else }}—{{ end }}   </td>
                                 </tr>
                             {{end}}
         

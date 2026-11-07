@@ -1,23 +1,22 @@
 ---
 title: 'fluentbit'
-description: ''
+description: 'Collect, process, and route logs, metrics, and traces with Fluent Bit, a fast, lightweight telemetry agent with native OpenTelemetry support.'
 hero:
   enabled: true
   position: 1
   heading: |
-   An End to End
-   Observability Pipeline
-  tag: "Deployed Over Fifteen Billion Times"
+   Collect, process, and route
+   your telemetry.
+  tag: "Open source · CNCF graduated"
   subHeading: |
-   Fluent Bit is a super fast, lightweight, and highly scalable logging, metrics, and traces processor and forwarder. It is the preferred choice for cloud and containerized environments.
+   Bring logs, metrics, and traces together in a fast, lightweight agent. Transform your data and send it to the backends you choose, with native OpenTelemetry support.
   buttons:
-    - btnText: TRY NOW
-      btnUrl: "https://docs.fluentbit.io/manual/about/resources"
-    - btnText: DOWNLOAD NOW
-      btnUrl: "https://docs.fluentbit.io/manual/installation/getting-started-with-fluent-bit"
-  noteText: Read the notes »
-  image: "/images/hero.svg"
-  mobileImage: "/images/hero-m.svg"
+    - btnText: Get started
+      btnUrl: "https://docs.fluentbit.io/manual/installation/downloads"
+    - btnText: How it works
+      btnUrl: "/how-it-works/"
+      secondary: true
+  noteText: Read release notes ↗
 howitworks:
   enabled: true
   position: 5
