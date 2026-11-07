@@ -37,7 +37,7 @@
 .benchmark-case svg { display: block; width: 100%; height: auto; max-width: 680px; }
 .benchmark-gridline { stroke: #e5edf3; stroke-width: 1; }
 .benchmark-system, .benchmark-value { fill: #35485f; font-size: 18px; }
-.benchmark-page .benchmark-chart > .benchmark-note { margin-top: 16px; margin-bottom: 0; }
+.benchmark-page .benchmark-chart > .benchmark-note { margin: 12px 0 18px; }
 .benchmark-control { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 14px; margin: 24px 0 6px; }
 .benchmark-control select { max-width: 100%; padding: 10px 34px 10px 12px; border: 1px solid #c7d8e5; border-radius: 6px; background: #fff; color: #202e40; }
 .benchmark-table-scroll { max-width: 100%; overflow-x: auto; margin: 24px 0; border: 1px solid #dce7ef; border-radius: 10px; }

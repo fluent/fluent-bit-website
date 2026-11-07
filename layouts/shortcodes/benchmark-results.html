@@ -43,9 +43,9 @@
           {{ $groups := slice }}
           {{ range $workload := slice "JSON, modified" "Protobuf, modified" "JSON, ingest" "Protobuf, ingest" }}
             {{ $rows := slice }}
-            {{ range $j, $name := slice "Fluent Bit 5.1" "Fluent Bit 5.2" "OpenTelemetry Collector 0.163" }}
+            {{ range $j, $name := slice "Fluent Bit 5.2" "Fluent Bit 5.1" "OpenTelemetry Collector 0.163" }}
               {{ $match := index (where (where (where $d.otlp "storage" $storage) "workload" $workload) "system" $name) 0 }}
-              {{ $rows = $rows | append (dict "name" $name "short" (index (slice "5.1" "5.2" "OTel") $j) "color" (index (slice "#607b97" "#2372b8" "#b75c24") $j) "value" (div (index $match $view.key) $view.factor)) }}
+              {{ $rows = $rows | append (dict "name" $name "short" (index (slice "5.2" "5.1" "OTel") $j) "color" (index (slice "#2372b8" "#607b97" "#b75c24") $j) "value" (div (index $match $view.key) $view.factor)) }}
             {{ end }}
             {{ $label := replace (replace $workload ", modified" " · add an attribute") ", ingest" " · ingest only" }}
             {{ $groups = $groups | append (dict "label" $label "rows" $rows) }}
@@ -66,25 +66,28 @@
           {{ $records = $d.fts }}
           {{ $note = "Lower is better. Published median user + system CPU and peak RSS. Tail → null; 1M flat records or 300k Kubernetes records per run. Compare systems within each policy; record budgets differ between policies. The repeat count is not stated." }}
           {{ if eq $view.key "cpu" }}
-            {{ $series = slice (dict "key" "lua_51_cpu_seconds" "name" "Lua · Fluent Bit 5.1.0" "short" "5.1 Lua" "color" "#607b97") (dict "key" "lua_branch_cpu_seconds" "name" "Lua · Fluent Bit 5.2" "short" "5.2 Lua" "color" "#7866a6") (dict "key" "fts_cpu_seconds" "name" "FTS · Fluent Bit 5.2" "short" "5.2 FTS" "color" "#2372b8") }}
+            {{ $series = slice (dict "key" "fts_cpu_seconds" "name" "Fluent Bit 5.2 · FTS" "short" "5.2 FTS" "color" "#2372b8") (dict "key" "lua_branch_cpu_seconds" "name" "Fluent Bit 5.2 · Lua" "short" "5.2 Lua" "color" "#7866a6") (dict "key" "lua_51_cpu_seconds" "name" "Fluent Bit 5.1.0 · Lua" "short" "5.1 Lua" "color" "#607b97") }}
           {{ else }}
-            {{ $series = slice (dict "key" "lua_51_rss_mb" "name" "Lua · Fluent Bit 5.1.0" "short" "5.1 Lua" "color" "#607b97") (dict "key" "fts_rss_mb" "name" "FTS · Fluent Bit 5.2" "short" "5.2 FTS" "color" "#2372b8") }}
+            {{ $series = slice (dict "key" "fts_rss_mb" "name" "Fluent Bit 5.2 · FTS" "short" "5.2 FTS" "color" "#2372b8") (dict "key" "lua_51_rss_mb" "name" "Fluent Bit 5.1.0 · Lua" "short" "5.1 Lua" "color" "#607b97") }}
           {{ end }}
         {{ else if eq $scope "storage" }}
           {{ $chartTitle = "Filesystem allocation and ingestion" }}
           {{ $records = $d.chunks }}
-          {{ $series = slice (dict "key" (printf "before_%s" $view.key) "name" "Before allocation integration" "short" "Before" "color" "#607b97") (dict "key" (printf "after_%s" $view.key) "name" "5.2 · optimized allocation" "short" "After" "color" "#2372b8") }}
-          {{ $note = "Three measured repeats after warmup. Both builds use ChunkIO 1.5.5. Disk and CPU: lower is better. Ingestion rate: higher is better. This isolates allocation integration, not a 5.1-versus-5.2 comparison." }}
+            {{ $series = slice (dict "key" (printf "after_%s" $view.key) "name" "Fluent Bit 5.2 · optimized allocation" "short" "After" "color" "#2372b8") (dict "key" (printf "before_%s" $view.key) "name" "Before allocation integration" "short" "Before" "color" "#607b97") }}
+          {{ $note = "Three measured repeats after warmup. Both builds use ChunkIO 1.5.5. This isolates allocation integration, not a 5.1-versus-5.2 comparison." }}
         {{ else if eq $scope "cfl" }}
           {{ $chartTitle = "Decoded-record construction" }}
           {{ $records = $d.cfl }}
-          {{ $series = slice (dict "key" (printf "before_%s" $view.key) "name" "Previous record arena" "short" "Previous" "color" "#607b97") (dict "key" (printf "after_%s" $view.key) "name" "Compact record arena" "short" "Compact" "color" "#2372b8") }}
+            {{ $series = slice (dict "key" (printf "after_%s" $view.key) "name" "Compact record arena" "short" "Compact" "color" "#2372b8") (dict "key" (printf "before_%s" $view.key) "name" "Previous record arena" "short" "Previous" "color" "#607b97") }}
           {{ $note = "Lower is better. Release x86_64; best of five runs. Reserved arena bytes are not process RSS. These gains are not additive with pipeline results." }}
         {{ else if eq $scope "fusion" }}
           {{ $chartTitle = "CPU cost of a content modifier chain" }}
           {{ $records = where $d.fusion "cohort" "Final confirmation" }}
-          {{ $series = slice (dict "key" "baseline_cpu_s_per_million" "name" "Before chain fusion" "short" "Before" "color" "#607b97") (dict "key" "candidate_cpu_s_per_million" "name" "5.2 · chain fusion" "short" "After" "color" "#2372b8") }}
+            {{ $series = slice (dict "key" "candidate_cpu_s_per_million" "name" "Fluent Bit 5.2 · chain fusion" "short" "After" "color" "#2372b8") (dict "key" "baseline_cpu_s_per_million" "name" "Before chain fusion" "short" "Before" "color" "#607b97") }}
           {{ $note = "Lower is better. Five paired runs/case; 800k records for 12 fields, 200k for 128 fields. Both builds are 5.2 revisions." }}
+        {{ end }}
+        {{ if eq $scope "storage" }}
+          {{ $note = printf "%s %s" (cond (eq $view.key "ingestion_mib_per_second") "Higher is better." "Lower is better.") $note }}
         {{ end }}
         {{ range $record := $records }}
           {{ $rows := slice }}
