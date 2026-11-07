@@ -6,14 +6,22 @@
 {{ if eq $scope "otlp" }}
   {{ $caption = "OTLP results: medians of five runs. Observed min–max values are rounded ranges, not confidence intervals." }}
   {{ $headers = slice "Workload" "System" "M records/s" "Observed min–max M/s" "CPU s/M" "Steady / peak MiB" "HTTP p50 / p99 µs" }}
-  {{ range $d.otlp }}
+  {{ $ordered := slice }}
+  {{ range $storage := slice "memory" "filesystem" }}
+    {{ range $workload := slice "JSON, ingest" "Protobuf, ingest" "JSON, modified" "Protobuf, modified" }}
+      {{ range $system := slice "Fluent Bit 5.2" "Fluent Bit 5.1" "OpenTelemetry Collector 0.163" }}
+        {{ $ordered = $ordered | append (index (where (where (where $d.otlp "storage" $storage) "workload" $workload) "system" $system) 0) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  {{ range $ordered }}
     {{ $rows = $rows | append (dict "cells" (slice (printf "%s · %s" (title .storage) .workload) .system (printf "%.3f" (div .records_per_second 1000000)) (printf "%.2f–%.2f" (div .range_min_records_per_second 1000000) (div .range_max_records_per_second 1000000)) (printf "%.2f" .cpu_seconds_per_million) (printf "%.0f / %.0f" .steady_rss_mib .peak_rss_mib) (printf "%.0f / %.0f" .latency_p50_us .latency_p99_us))) }}
   {{ end }}
 {{ else if eq $scope "fts" }}
   {{ $caption = "FTS versus equivalent Lua log policies: CPU seconds/run and peak RSS as published." }}
-  {{ $headers = slice "Policy" "Records/run" "5.1.0 Lua CPU s" "5.2 Lua CPU s" "5.2 FTS CPU s" "Less CPU vs 5.1.0 Lua" "5.1.0 Lua / 5.2 FTS RSS MB" }}
+  {{ $headers = slice "Policy" "Records/run" "5.2 FTS CPU s" "5.2 Lua CPU s" "5.1.0 Lua CPU s" "Less CPU vs 5.1.0 Lua" "5.2 FTS / 5.1.0 Lua RSS MB" }}
   {{ range $d.fts }}
-    {{ $rows = $rows | append (dict "cells" (slice .workload (lang.FormatNumber 0 .records) (printf "%.2f" .lua_51_cpu_seconds) (printf "%.2f" .lua_branch_cpu_seconds) (printf "%.2f" .fts_cpu_seconds) (printf "%.1f%%" (mul 100 (sub 1 (div .fts_cpu_seconds .lua_51_cpu_seconds)))) (printf "%.1f / %.1f" .lua_51_rss_mb .fts_rss_mb))) }}
+    {{ $rows = $rows | append (dict "cells" (slice .workload (lang.FormatNumber 0 .records) (printf "%.2f" .fts_cpu_seconds) (printf "%.2f" .lua_branch_cpu_seconds) (printf "%.2f" .lua_51_cpu_seconds) (printf "%.1f%%" (mul 100 (sub 1 (div .fts_cpu_seconds .lua_51_cpu_seconds)))) (printf "%.1f / %.1f" .fts_rss_mb .lua_51_rss_mb))) }}
   {{ end }}
 {{ else if eq $scope "fusion" }}
   {{ $caption = "Final five-pair confirmation of chain fusion; both revisions are 5.2 builds." }}
