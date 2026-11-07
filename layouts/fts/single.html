@@ -7,11 +7,11 @@
           <div class="fts-hero-copy">
             <p class="fts-eyebrow">{{ site.Data.fts.name }}</p>
             <h1 id="fts-title">Shape your telemetry <span class="text-gradient">with Lua.</span></h1>
-            <p class="fts-intro">{{ .Description }}</p>
-            <p class="fts-hero-detail">Write a Lua policy for your pipeline. Keep the logic close to your data.</p>
+            <p class="fts-intro">{{ .Params.intro }}</p>
+            <p class="fts-hero-detail">Process logs, metrics, and traces directly inside Fluent Bit.</p>
             <div class="fts-actions">
               <a class="btn btn-gradient" href="{{ site.Data.fts.quickstart }}">Get started with FTS</a>
-              <a class="fts-text-link" href="#signals">Explore signal examples <span aria-hidden="true">↗</span></a>
+              <a class="fts-text-link" href="#signals">See more examples <span aria-hidden="true">↗</span></a>
             </div>
             <p class="fts-preview"><span>{{ site.Data.fts.status }}</span> Logs · Metrics · Traces</p>
           </div>
@@ -22,8 +22,8 @@
     <nav class="fts-page-nav" aria-label="On this page">
       <div class="container">
         <a href="#use-cases">Use cases</a>
-        <a href="#signals">Logs, metrics &amp; traces</a>
-        <a href="#typed-values">Typed values</a>
+        <a href="#typed-values">What “typed” means</a>
+        <a href="#signals">More examples</a>
         <a href="#get-started">Get started</a>
       </div>
     </nav>

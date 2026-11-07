@@ -1,132 +1,97 @@
 ---
 title: "FTS — Fluent Typed Scripting"
 description: "Write policies for logs, metrics, and traces directly in Fluent Bit, with typed access to telemetry values and OpenTelemetry context."
+intro: "Use Lua to hide sensitive fields, make your data consistent, and filter out unwanted events before they reach your backend."
 type: fts
 headerTheme: light
 image: "/images/blog/1701353456-general-fluent-bit-preview-card.png"
 ---
 
 <section class="fts-section" aria-labelledby="use-cases">
-<p class="fts-eyebrow">Your pipeline. Your policy.</p>
 
-## Keep the telemetry you need. Shape what you send. {#use-cases}
+## Your data. Your rules. {#use-cases}
 
-A secret in a log, inconsistent metric units, or a stream of successful probes can get in the way of useful telemetry. FTS lets you express how that data should reach your destinations, inside Fluent Bit.
+A policy is a small Lua script that tells Fluent Bit what to change, keep, or drop.
 
 <div class="fts-use-cases">
 <div>
 
-### Protect sensitive fields
+### Hide sensitive fields
 
-Redact selected structured keys in log bodies and attributes. Apply privacy policies at the input when every destination needs the same treatment.
-
-</div>
-<div>
-
-### Normalize across services
-
-Decode JSON messages, align OpenTelemetry context, and explicitly convert metric names and units to the conventions your queries expect.
+Replace passwords, tokens, and other known fields before sending data to a destination.
 
 </div>
 <div>
 
-### Reduce noise and dimensions
+### Make data consistent
 
-Keep failures and useful context while suppressing selected successful probes. Aggregate compatible metric series over the dimensions you need.
+Use common environment labels and metric units so data from different services is easier to query.
+
+</div>
+<div>
+
+### Reduce noise
+
+Filter out events you do not need, or combine compatible metric series using the labels that matter to you.
 
 </div>
 </div>
 </section>
-
-<section class="fts-section" aria-labelledby="signals">
-<p class="fts-eyebrow">One runtime. Three signals.</p>
-
-## Write the transformation your data needs. {#signals}
-
-For custom logic, attach a Lua script to an input or output processor. Use a separate policy for each signal: one log record, one metric family, or one span per callback. These examples are independent scripts.
-
-{{< fts-signals >}}
-
-OpenTelemetry resource, scope, and attributes are available as properties. Logs must carry OpenTelemetry context to use those properties; ordinary logs can first pass through the OpenTelemetry envelope processor.
-</section>
-
-{{< benchmark-fts >}}
 
 <section class="fts-section fts-typed-section" aria-labelledby="typed-values">
 <div class="fts-section-grid">
 <div>
-<p class="fts-eyebrow">Change the field. Preserve the value.</p>
 
 ## What does “typed” mean? {#typed-values}
 
-A request ID should still be the same ID after you redact a password. FTS exposes telemetry values with their types intact: exact 64-bit integers, doubles, binary data, nulls, maps, and arrays.
+Changing a password field should not change a request ID. FTS preserves the values your policy leaves untouched, including large integer IDs, nulls, and binary data.
 
-Lua remains dynamically typed. Accessors check values at runtime, and explicit constructors let you create exact integers. Untouched values retain their type and value; OpenTelemetry's own constraints still apply.
+Lua is still Lua: you do not need a new language or static type declarations.
 
 </div>
-<div class="fts-value-card" aria-label="Examples of preserved telemetry types">
-  <p class="fts-code-label">Values your policy leaves untouched</p>
+<div class="fts-value-card" aria-label="An exact ID preserved by the policy">
+  <p class="fts-code-label">The ID in the example above</p>
   <dl>
-    <div><dt>Integer ID</dt><dd><code>9007199254740993</code><span>Exact 64-bit value</span></dd></div>
-    <div><dt>Null</dt><dd><code>null</code><span>Preserved as null</span></dd></div>
-    <div><dt>Binary</dt><dd><code>bytes</code><span>Preserved as binary data</span></dd></div>
-    <div><dt>Context</dt><dd><code>resource · scope</code><span>Structured OpenTelemetry access</span></dd></div>
+    <div><dt>Before</dt><dd><code>9007199254740993</code></dd></div>
+    <div><dt>After</dt><dd><code>9007199254740993</code><span>Same value. No rounding.</span></dd></div>
   </dl>
 </div>
 </div>
 </section>
 
-<section class="fts-section" aria-labelledby="workflow">
-<p class="fts-eyebrow">From policy to a reviewed pipeline</p>
+<section class="fts-section" aria-labelledby="signals">
 
-## Write. Check. Run. {#workflow}
+## Works with logs, metrics, and traces {#signals}
 
-<div class="fts-workflow">
-<div>
+Write a policy for the data you want to change. FTS also gives you access to OpenTelemetry resource and application context when it is present.
 
-### 01 / Write
+<details class="fts-more-examples">
+<summary>See examples for logs, metrics, and traces</summary>
 
-Write a Lua policy for the signal and source schema you receive. Put parsing, normalization, and redaction before decisions that use those fields.
+{{< fts-signals >}}
 
-</div>
-<div>
-
-### 02 / Check
-
-Check your YAML configuration with `fluent-bit --dry-run -c fluent-bit.yaml`, then verify policy behavior with representative records.
-
-</div>
-<div>
-
-### 03 / Run
-
-Run your pipeline and inspect its output. Check successful transformations, unchanged control records, and policy failures, including exact IDs and OpenTelemetry context.
-
-</div>
-</div>
-
-### When a policy fails
-
-Item edits roll back together. By default, `error_mode: drop` removes the item; `keep` forwards its original, including any unredacted data. Redaction targets only the values and structured keys you specify; it does not discover secrets in free-form text.
-
-Instruction, memory, and output limits help contain policy mistakes. Policies are trusted configuration; the restricted environment is not a security boundary.
-
-FTS complements the existing Lua filter. Existing scripts may still need its module access, record splitting, or classic configuration. Adapting a policy to FTS requires its callback and value model, not just a configuration rename.
+</details>
 </section>
 
+{{< benchmark-fts >}}
+
 <section class="fts-section fts-get-started" aria-labelledby="get-started">
-<p class="fts-eyebrow">Try it with your telemetry</p>
 
-## Start with one policy. {#get-started}
+## Try your first policy {#get-started}
 
-Run the official Lua quickstart, inspect the output, then adapt the policy to representative data from your own pipeline.
-
-{{< fts-availability >}}
+The quickstart shows how to add a Lua policy to a Fluent Bit pipeline and inspect the result. FTS is included in **Fluent Bit 5.2**.
 
 <div class="fts-actions">
 <a class="btn btn-gradient" href="{{< fts-link "quickstart" >}}">Get started with FTS</a>
-<a class="fts-text-link" href="{{< fts-link "reference" >}}">Read the processor reference ↗</a>
+<a class="fts-text-link" href="{{< fts-link "reference" >}}">Examples and API reference ↗</a>
 </div>
 
-The guides above are maintained in the official Fluent Bit source repository. [OpenTelemetry with Fluent Bit](/opentelemetry/) and [How it works](/how-it-works/) explain the surrounding pipeline. Share your policy needs and feedback in [GitHub Discussions](https://github.com/fluent/fluent-bit/discussions).
+<details class="fts-more-examples">
+<summary>A few things to know before you start</summary>
+
+- Redaction replaces the structured fields you name. Secrets inside message text need their own rules.
+- By default, a failed policy drops the affected item. Review the [error-handling options]({{< fts-link "reference" >}}#callback-results) before using a privacy policy.
+- Existing Lua filter scripts can keep running. FTS uses a different API, so moving a script requires adapting it.
+
+</details>
 </section>
