@@ -1,0 +1,9 @@
+<div class="benchmark-table-scroll" tabindex="0" role="region" aria-label="{{ .caption }}">
+  <table>
+    <caption>{{ .caption }}</caption>
+    <thead><tr>{{ range .headers }}<th scope="col">{{ . }}</th>{{ end }}</tr></thead>
+    <tbody>
+      {{ range .rows }}<tr>{{ range $i, $value := .cells }}{{ if eq $i 0 }}<th scope="row">{{ $value }}</th>{{ else }}<td>{{ $value }}</td>{{ end }}{{ end }}</tr>{{ end }}
+    </tbody>
+  </table>
+</div>

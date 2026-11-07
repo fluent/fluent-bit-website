@@ -1,0 +1,9 @@
+{{ $d := partial "benchmarks/data.html" . }}
+<div class="benchmark-sources">
+  {{ range $d.metadata.sources }}<article><h3><a href="{{ .url }}">{{ .title }} ↗</a></h3><p>{{ .method }}</p></article>{{ end }}
+</div>
+<details>
+  <summary>Pinned OTLP source revisions</summary>
+  <ul>{{ range $label, $revision := $d.metadata.otlp_revisions }}<li>{{ replace $label "_" " " }}: <a href="https://github.com/fluent/fluent-bit/tree/{{ $revision }}"><code>{{ $revision }}</code></a></li>{{ end }}</ul>
+</details>
+<p class="benchmark-note">Sources retrieved {{ $d.retrieved_at }}. Retrieval time is not the measurement date. Full build settings and benchmark configurations are in the original sources.</p>

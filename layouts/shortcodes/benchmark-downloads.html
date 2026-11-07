@@ -1,0 +1,12 @@
+{{ $d := partial "benchmarks/data.html" . }}
+{{ $page := site.GetPage "/benchmarks/5.2" }}
+<div class="benchmark-downloads">
+  <a href="{{ ($page.Resources.Get "results.json").RelPermalink }}" download>JSON data</a>
+  {{ range $scope := slice "otlp" "fts" "fusion" "chunks" "cfl" }}
+    {{ $rows := index $d $scope }}
+    {{ $columns := slice }}
+    {{ range $key, $value := index $rows 0 }}{{ $columns = $columns | append $key }}{{ end }}
+    {{ $url := partial "benchmarks/csv.html" (dict "rows" $rows "columns" $columns "target" (printf "benchmarks/5.2/%s.csv" $scope)) }}
+    <a href="{{ $url }}" download>{{ cond (eq $scope "chunks") "Buffering" (upper $scope) }} CSV</a>
+  {{ end }}
+</div>
