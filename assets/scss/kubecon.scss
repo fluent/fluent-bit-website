@@ -1,0 +1,66 @@
+.kubecon-page {
+  --event-ink: #172e40;
+  --event-teal: #007e81;
+  color: var(--event-ink);
+  font-size: 17px;
+  line-height: 1.65;
+  .event-shell { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { color: var(--event-ink); font-weight: 600; letter-spacing: -.035em; }
+  h1 { font-size: clamp(44px, 8vw, 80px); line-height: 1.08; margin: 20px 0; }
+  h1 span { color: var(--event-teal); }
+  h2 { font-size: clamp(30px, 5vw, 40px); line-height: 1.18; margin: 0 0 20px; }
+  h3 { font-size: 22px; line-height: 1.35; }
+  p { margin: 0 0 20px; }
+  a { color: #006d78; text-underline-offset: 4px; }
+  a:focus-visible { outline: 3px solid #2479b4; outline-offset: 5px; }
+  section[id] { scroll-margin-top: 100px; }
+  .event-eyebrow { color: var(--event-teal); font-size: 13px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; margin-bottom: 12px; }
+  .event-hero { padding: 54px 0 32px; margin: 0; }
+  .event-location { font-size: 15px; color: #526573; }
+  .event-lead { font-size: 23px; line-height: 1.45; max-width: 600px; }
+  .event-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .event-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 20px; padding: 13px 22px; min-height: 48px; border: 2px solid var(--event-teal); border-radius: 8px; background: var(--event-teal); color: white; font-size: 16px; font-weight: 500; text-decoration: none; }
+  .event-button:hover { background: #00676a; border-color: #00676a; color: white; }
+  .event-button-outline { background: transparent; color: var(--event-teal); }
+  .event-nav { display: flex; flex-wrap: wrap; gap: 8px 24px; border-block: 1px solid #d4e0e5; padding: 10px 0; }
+  .event-nav a { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; font-weight: 500; }
+  .event-section { padding: 48px 0; border-bottom: 1px solid #d4e0e5; }
+  .event-features { columns: 2; column-gap: 42px; margin-top: 30px; }
+  .event-features h3 { break-after: avoid; margin-top: 0; }
+  .event-features p { break-inside: avoid; margin-bottom: 30px; }
+  .event-link { display: inline-block; padding: 10px 0; min-height: 44px; font-weight: 500; }
+  .event-performance { background: #eaf5f4; border: 0; border-radius: 16px; padding: 32px; margin-top: 32px; }
+  .event-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 28px 0; }
+  .event-metrics strong { display: block; color: #006b70; font-size: clamp(34px, 5vw, 52px); line-height: 1.2; letter-spacing: -.045em; }
+  .event-metrics span { display: block; font-size: 15px; max-width: 210px; margin-top: 8px; }
+  .event-method { font-size: 14px; color: #4c606b; line-height: 1.6; }
+  .event-studio { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+  .event-code { background: #152f40; color: #d5efed; border-radius: 12px; padding: 24px; min-width: 0; }
+  .event-code p { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+  .event-code pre { color: #dcfff5; font-size: 13px; line-height: 1.8; margin: 0; overflow-x: auto; }
+  .event-talk { padding: 26px; border: 1px solid #d4e0e5; border-radius: 12px; margin: 22px 0; }
+  .event-talk-featured { border-left: 5px solid var(--event-teal); }
+  .event-tag { font-size: 13px; color: #006b70; font-weight: 500; }
+  .event-talk-details { font-size: 16px; }
+  .event-kiosk-heading { display: flex; align-items: flex-start; gap: 24px; justify-content: space-between; }
+  .event-kiosk-number { background: #d9f2ed; color: #00565d; border-radius: 8px; padding: 8px 18px; font-size: 28px; font-weight: 600; white-space: nowrap; }
+  .event-kiosk-hours { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+  .event-kiosk-hours a { display: grid; gap: 4px; border: 1px solid #c5d9db; padding: 18px; border-radius: 8px; }
+  .event-kiosk-hours span { font-size: 14px; color: #526573; }
+  .event-resource-links { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 30px; }
+  .event-resource-links a { display: flex; justify-content: space-between; align-items: center; min-height: 52px; border-bottom: 1px solid #d4e0e5; gap: 12px; }
+  @media (max-width: 600px) {
+    .event-shell { padding: 0 20px; }
+    .event-hero { padding-top: 30px; }
+    .event-actions { flex-direction: column; }
+    .event-features { columns: 1; }
+    .event-section { padding: 32px 0; }
+    .event-performance { padding: 24px 20px; }
+    .event-metrics { grid-template-columns: 1fr; gap: 20px; }
+    .event-metrics > div { display: grid; grid-template-columns: 128px 1fr; align-items: center; gap: 12px; }
+    .event-metrics span { margin: 0; }
+    .event-studio, .event-resource-links, .event-kiosk-hours { grid-template-columns: 1fr; }
+    .event-kiosk-heading { flex-direction: column-reverse; gap: 16px; }
+    .event-talk { padding: 20px; }
+  }
+}
