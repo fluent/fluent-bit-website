@@ -1,0 +1,104 @@
+{{ define "main" }}
+  {{ partial "header.html" . }}
+  {{ $style := resources.Get "scss/kubecon.scss" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+  <main class="kubecon-page" id="event-main">
+    <div class="event-shell">
+      <header class="event-hero">
+        <p class="event-eyebrow">KubeCon + CloudNativeCon NA 2026</p>
+        <p class="event-location">November 9–12 · Salt Lake City, Utah</p>
+        <h1>Meet Fluent Bit <span>5.2.</span></h1>
+        <p class="event-lead">Faster telemetry. Typed scripting. More resilient delivery.</p>
+        <p>Your quick guide to the release, the demos, and the people building it.</p>
+        <div class="event-actions">
+          <a class="event-button" href="{{ .Params.studioUrl }}">Try Fluent Bit Studio <span aria-hidden="true">↗</span></a>
+          <a class="event-button event-button-outline" href="#meet-us">Find us at Kiosk P-12A <span aria-hidden="true">↓</span></a>
+        </div>
+      </header>
+      <nav class="event-nav" aria-label="Event page sections">
+        <a href="#release">What’s new</a>
+        <a href="#performance">Benchmarks</a>
+        <a href="#talks">Talks</a>
+        <a href="#meet-us">Kiosk</a>
+      </nav>
+      <section class="event-section" id="release" aria-labelledby="release-title">
+        <p class="event-eyebrow">The release at a glance</p>
+        <h2 id="release-title">Small agent. Bigger possibilities.</h2>
+        <p>Collect, process, and route logs, metrics, and traces with Fluent Bit 5.2.</p>
+        <div class="event-features">{{ .Content }}</div>
+        <a class="event-link" href="/announcements/v5.2.0/">Read the complete 5.2 release notes <span aria-hidden="true">→</span></a>
+      </section>
+      <section class="event-section event-performance" id="performance" aria-labelledby="performance-title">
+        <p class="event-eyebrow">More throughput. Less CPU per log.</p>
+        <h2 id="performance-title">Performance you can inspect.</h2>
+        <div class="event-metrics">
+          <div><strong>1.50M</strong><span>records per second</span></div>
+          <div><strong>7.2×</strong><span>throughput vs 5.1</span></div>
+          <div><strong>69.6%</strong><span>less CPU time per million logs vs 5.1</span></div>
+        </div>
+        <p class="event-method">One measured workload: OTLP/HTTP JSON, adding one log attribute with native Content Modifier, memory buffering, and null output. 30M records per run, five runs. CPU time: 8.07 → 2.45 seconds per million records. Results depend on workload and hardware.</p>
+        <a class="event-button" href="/benchmarks/5.2/">Explore results &amp; methodology <span aria-hidden="true">→</span></a>
+      </section>
+      <section class="event-section event-studio" aria-labelledby="studio-title">
+        <div>
+          <p class="event-eyebrow">Get hands-on</p>
+          <h2 id="studio-title">Bring a policy. Try it in Studio.</h2>
+          <p>Write and test FTS Lua policies on sample logs, and explore Fluent Bit routing in your browser.</p>
+          <a class="event-button" href="{{ .Params.studioUrl }}">Open Fluent Bit Studio <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="event-code" aria-label="Example FTS redaction policy">
+          <p>FTS / redact a sensitive field</p>
+          <pre><code>local fb = require("fluentbit")
+
+function process(log)
+  fb.redact(log.body, {"password"})
+end</code></pre>
+        </div>
+      </section>
+      <section class="event-section" id="talks" aria-labelledby="talks-title">
+        <p class="event-eyebrow">Hear from the maintainer</p>
+        <h2 id="talks-title">Join us on Wednesday.</h2>
+        <p>All times are Salt Lake City local time: MST (UTC−7).</p>
+        {{ with .Params.featuredTalk }}
+          <article class="event-talk event-talk-featured">
+            <p class="event-tag">Wednesday · Maintainer Track</p>
+            <h3>{{ .title }}</h3>
+            <p>Profiling, optimization, and the tradeoffs behind Fluent Bit’s latest performance work.</p>
+            <p class="event-talk-details"><strong>{{ .speaker }}</strong><br>{{ .time }}<br>{{ .location }}</p>
+            <a class="event-link" href="{{ .url }}">View Wednesday’s session <span aria-hidden="true">↗</span></a>
+          </article>
+        {{ end }}
+        {{ with .Params.lightningTalk }}
+          <article class="event-talk">
+            <p class="event-tag">Also on the program · Monday lightning talk</p>
+            <h3>{{ .title }}</h3>
+            <p class="event-talk-details"><strong>{{ .speaker }}</strong><br>{{ .time }}<br>{{ .location }}</p>
+            <a class="event-link" href="{{ .url }}">View lightning talk <span aria-hidden="true">↗</span></a>
+          </article>
+        {{ end }}
+        <p class="event-method">Check the <a href="{{ .Params.scheduleUrl }}">official program</a> for the latest times and rooms.</p>
+      </section>
+      <section class="event-section event-kiosk" id="meet-us" aria-labelledby="kiosk-title">
+        <p class="event-eyebrow">Meet the Fluent Bit community</p>
+        <div class="event-kiosk-heading"><h2 id="kiosk-title">Stop by the Fluent Bit Kiosk.</h2><span class="event-kiosk-number">P-12A</span></div>
+        <p>See Fluent Bit 5.2 and Studio, bring your pipeline questions, and talk with the people behind the project.</p>
+        <p><strong>Project Pavilion · Cosmic Canyon Zone</strong><br>Salt Palace · Level 1 · Solutions Showcase · Hall 5</p>
+        <h3>Visit us Wednesday, November 11</h3>
+        <div class="event-kiosk-hours">
+          <a href="{{ .Params.kioskMorningUrl }}"><span>Morning</span><strong>10:30 AM–1:25 PM</strong></a>
+          <a href="{{ .Params.kioskAfternoonUrl }}"><span>Afternoon</span><strong>1:55–5:00 PM</strong></a>
+        </div>
+        <p class="event-method">MST (UTC−7). Kiosk hours follow the official Project Pavilion schedule.</p>
+      </section>
+      <section class="event-section event-next" aria-labelledby="next-title">
+        <h2 id="next-title">Keep exploring.</h2>
+        <div class="event-resource-links">
+          <a href="/announcements/v5.2.0/">5.2 release notes <span aria-hidden="true">→</span></a>
+          <a href="/benchmarks/5.2/">Performance benchmarks <span aria-hidden="true">→</span></a>
+          <a href="{{ .Params.studioUrl }}">Fluent Bit Studio <span aria-hidden="true">↗</span></a>
+          <a href="https://docs.fluentbit.io/manual/installation/getting-started-with-fluent-bit">Get started with Fluent Bit <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+    </div>
+  </main>
+{{ end }}
